@@ -3,15 +3,14 @@
  */
 
 $cellSize: 35.6px;
-$designerWidth: 320px;
-$designerHeight: 568px;
+$designerWidth: 100%;
+$designerHeight: 100%;
 $designerWidthHalf: $designerWidth / 2;
 
 .canvas-wrapper {
   position: relative;
-  top: 60px;
   width: $designerWidth;
-  // height: $designerHeight;
+  height: $designerHeight;
   min-height: $designerHeight;
   margin: 0 auto;
   background: #fff;
@@ -28,10 +27,10 @@ $designerWidthHalf: $designerWidth / 2;
 
 // 切换编辑、预览模式 的按钮组
 .mode-toggle-wrapper {
+  display: none !important;
   position: fixed;
   z-index: 999;
-  top: 80px;
+  // top: 120px;
   left: calc(50% - 120px);
   text-align: center;
 }
-
