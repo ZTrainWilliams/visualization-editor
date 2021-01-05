@@ -1,8 +1,10 @@
 export default {
-  render () {
-    return <div class="logo"><router-link to={{ path: '/' }}>
-      {/* 鲁班 H5 Luban H5 */}
-      {this.$t('app.title')}
-    </router-link></div>
-  }
-}
+  render() {
+    return (
+      <div class='logo'>
+        {this.$t('app.title')}
+        {/* <router-link to={{ path: '/' }}>{this.$t('app.title')}</router-link> */}
+      </div>
+    );
+  },
+};

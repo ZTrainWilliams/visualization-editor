@@ -178,7 +178,7 @@ export default {
     renderCanvas(h, elements) {
       return (
         <div
-          class="roothome"
+          class='roothome'
           style={{ height: '100%', position: 'relative' }}
           onClick={e => {
             this.hideContextMenu();
@@ -264,10 +264,10 @@ export default {
             );
           })}
           {this.vLines.map(line => (
-            <div class="v-line" style={{ left: `${line.left}px` }}></div>
+            <div class='v-line' style={{ left: `${line.left}px` }}></div>
           ))}
           {this.hLines.map(line => (
-            <div class="h-line" style={{ top: `${line.top}px` }}></div>
+            <div class='h-line' style={{ top: `${line.top}px` }}></div>
           ))}
           {this.contextmenuPos.length ? (
             <ContextMenu

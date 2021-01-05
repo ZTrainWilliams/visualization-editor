@@ -43,8 +43,8 @@ export default {
             <div>
               1. 请填入自己的腾讯地图开发密钥，
               <a
-                href="https://lbs.qq.com/dev/console/key/manage"
-                target="_blank">
+                href='https://lbs.qq.com/dev/console/key/manage'
+                target='_blank'>
                 前往申请&gt;&gt;
               </a>
             </div>

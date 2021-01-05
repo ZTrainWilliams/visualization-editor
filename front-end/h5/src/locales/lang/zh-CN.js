@@ -10,13 +10,13 @@
  */
 export default {
   app: {
-    title: '鲁班 H5'
+    title: '可视化搭建平台',
   },
   header: {
     chineseDocument: '中文文档',
     englishDocument: '英文文档',
     chat: '交流群', //  Discussion Group
-    logout: '退出登录'
+    logout: '退出登录',
   },
   sidebar: {
     myWorks: '我的作品',
@@ -24,7 +24,7 @@ export default {
     basicData: '基础数据',
     templateCenter: '模板中心',
     freeTemplates: '模板列表',
-    accountCenter: '账号中心'
+    accountCenter: '账号中心',
   },
   workCard: {
     description: '描述',
@@ -33,36 +33,36 @@ export default {
     preview: '预览',
     createNewWork: '创建新作品',
     edit: '编辑',
-    view: '查看作品'
+    view: '查看作品',
   },
   basicData: {
-    viewData: '查看数据'
+    viewData: '查看数据',
   },
   editor: {
     sidebar: {
       components: '组件列表',
       pages: '页面管理',
       templates: '模板',
-      tree: '组件树'
+      tree: '组件树',
     },
     pageManager: {
       title: '第{index}页面',
       action: {
         add: '新增页面',
         copy: '复制页面',
-        delete: '删除页面'
-      }
+        delete: '删除页面',
+      },
     },
     header: {
       preview: '预览',
       save: '保存',
       publish: '发布',
-      setAsTemplate: '设置为模板'
+      setAsTemplate: '设置为模板',
     },
     centerPanel: {
       mode: {
         edit: 'Edit',
-        preview: 'Preview'
+        preview: 'Preview',
       },
       contextMenu: {
         copy: '复制',
@@ -72,8 +72,8 @@ export default {
         moveUp: '上移',
         moveDown: '下移',
         showOnlyButton: '只有按钮才显示该选项',
-        showExcludePicture: '除了图片都显示该选项'
-      }
+        showExcludePicture: '除了图片都显示该选项',
+      },
     },
     fixedTool: {
       undo: '撤销{hotkey}',
@@ -84,7 +84,7 @@ export default {
       importPSD: '导入PSD',
       zoomIn: '缩小{hotkey}',
       zoomOut: '放大{hotkey}',
-      issues: '常见问题'
+      issues: '常见问题',
     },
     editPanel: {
       tab: {
@@ -92,7 +92,7 @@ export default {
         animation: '动画',
         action: '动作',
         script: '脚本',
-        page: '页面'
+        page: '页面',
       },
       animation: {
         add: '添加动画',
@@ -103,15 +103,15 @@ export default {
         iteration: '运行次数',
         inifinite: '循环播放',
         list: '选择动画',
-        title: 'Animation {index}'
+        title: 'Animation {index}',
       },
       common: {
-        empty: 'Select an element first please!'
-      }
+        empty: 'Select an element first please!',
+      },
     },
     tip: {
       componentUsage: '使用提示: {0} 组件即可',
-      click: '点击或拖拽'
-    }
-  }
-}
+      click: '点击或拖拽',
+    },
+  },
+};
