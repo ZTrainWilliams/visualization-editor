@@ -10,7 +10,7 @@ Data Screen Page Builder&Generator with Drag&Drop
 
 ### 生态
 
-基于 [鲁班 H5](https://ly525.github.io/luban-h5) 二次开发。
+基于 [鲁班 H5](https://ly525.github.io/luban-h5) 二次开发。文档：[在线文档](https://www.yuque.com/luban-h5/docs)
 
 | 后端集成                                                                                       | 官方组件库                                                    | 支撑/辅助组件                                          | 自定义组件                                                                 | RoadMap                                                        |
 | ---------------------------------------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------ | -------------------------------------------------------------------------- | -------------------------------------------------------------- |
@@ -51,7 +51,7 @@ cd front-end/h5 && yarn && yarn build:engine && yarn dev
 # 启动项目访问 http://localhost:1337 即可
 ```
 
-- 更多细节，请参照 [鲁班 H5-在线文档](https://ly525.github.io/luban-h5/zh/) 的 [`快速开始`](https://ly525.github.io/luban-h5/zh/getting-started/quick-start.html) 章节，进行配置即可
+- 更多细节，请参照 [在线文档](https://www.yuque.com/luban-h5/docs) 的 [`快速开始`](https://www.yuque.com/luban-h5/docs/gpfy6g) 章节，进行配置即可
 
 - 如果遇到接口 403 问题，请参照 [`快速开始`](https://ly525.github.io/luban-h5/zh/getting-started/quick-start.html) 章节，搜索关键字：403 即可
 
