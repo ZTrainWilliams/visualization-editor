@@ -22,10 +22,10 @@ export default {
     ...mapState('editor', {
       stateEditingElement: state => state.editingElement
     }),
-    customEditorName () {
+    customEditorName() {
       return `${this.editingElement.name}-custom-editor`
     },
-    editingElement () {
+    editingElement() {
       return this.realEditingElement || this.stateEditingElement
     }
   },
@@ -33,7 +33,7 @@ export default {
     ...mapActions('editor', [
       'setEditingElement'
     ]),
-    loadCustomEditorForPlugin () {
+    loadCustomEditorForPlugin() {
       this.loadCustomEditorFlag = false
       if (!this.editingElement) return
 
@@ -52,7 +52,7 @@ export default {
     /**
      * 将插件属性的 自定义增强编辑器注入 属性编辑面板中
      */
-    mixinEnhancedPropsEditor (editingElement) {
+    mixinEnhancedPropsEditor(editingElement) {
       if (!this.componentsForPropsEditor) return
       for (const key in this.componentsForPropsEditor) {
         if (this.$options.components[key]) return
@@ -67,7 +67,7 @@ export default {
      *  default: 'red'
      * }
      */
-    renderPropFormItem (h, { propKey, propConfig }) {
+    renderPropFormItem(h, { propKey, propConfig }) {
       const editingElement = this.editingElement
       const item = propConfig.editor
       // https://vuejs.org/v2/guide/render-function.html
@@ -90,7 +90,7 @@ export default {
         // input (e) {
         //   editingElement.pluginProps[propKey] = e.target ? e.target.value : e
         // }
-          change (e) {
+          change(e) {
             // fixme: update plugin props in vuex with dispatch
             editingElement.pluginProps[propKey] = e.target ? e.target.value : e
           }
@@ -109,20 +109,20 @@ export default {
       return (
         <a-form-item {...formItemData}>
           {/* extra: 操作补充说明 */}
-          { item.extra && <div slot="extra">{typeof item.extra === 'function' ? item.extra(h) : item.extra}</div>}
+          { item.extra && <div slot='extra'>{typeof item.extra === 'function' ? item.extra(h) : item.extra}</div>}
           { h(item.type, data) }
         </a-form-item>
       )
     },
-    renderPropsEditorPanel (h, editingElement) {
+    renderPropsEditorPanel(h, editingElement) {
       const vm = getVM(editingElement.name)
       const props = vm.$options.props
 
       return (
         <a-form
-          ref="form"
-          size="mini"
-          class="props-config-form"
+          ref='form'
+          size='mini'
+          class='props-config-form'
           layout={this.layout}
         >
           {
@@ -149,17 +149,17 @@ export default {
         </a-form>
       )
     },
-    renderWorkGlobalPropsPanel (h) {
+    renderWorkGlobalPropsPanel(h) {
       return <RenderWorkMode />
     }
   },
-  render (h) {
+  render(h) {
     const ele = this.editingElement
     if (!ele) return '请选择一个元素'
     this.mixinEnhancedPropsEditor(ele)
     return this.renderPropsEditorPanel(h, ele)
   },
-  created () {
+  created() {
     window.EditorApp.$on('setEditingElement', (ele) => {
       this.loadCustomEditorForPlugin()
       this.componentsForPropsEditor = getComponentsForPropsEditor(ele.name)

@@ -5,19 +5,19 @@ class UndoRedoHistory {
     history = [];
     currentIndex = -1;
 
-    get canUndo () {
+    get canUndo() {
       return this.currentIndex > 0
     }
 
-    get canRedo () {
+    get canRedo() {
       return this.history.length > this.currentIndex + 1
     }
 
-    init (store) {
+    init(store) {
       this.store = store
     }
 
-    addState (state) {
+    addState(state) {
       // may be we have to remove redo steps
       if (this.currentIndex + 1 < this.history.length) {
         this.history.splice(this.currentIndex + 1)
@@ -26,7 +26,7 @@ class UndoRedoHistory {
       this.currentIndex++
     }
 
-    undo () {
+    undo() {
       if (!this.canUndo) return
       const prevState = this.history[this.currentIndex - 1]
       // take a copy of the history state
@@ -37,7 +37,7 @@ class UndoRedoHistory {
       this.currentIndex--
     }
 
-    redo () {
+    redo() {
       if (!this.canRedo) return
       const nextState = this.history[this.currentIndex + 1]
       this.store.replaceState(cloneDeep(nextState))

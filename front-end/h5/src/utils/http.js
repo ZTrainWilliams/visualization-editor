@@ -7,7 +7,7 @@ message.config({
 
 export class AxiosWrapper {
   // eslint-disable-next-line camelcase
-  constructor ({ name = 'default', loading_name, responseType = 'json', headers, dispatch, commit, router, successMsg, failMsg, successCallback, failCallback, customRequest }) {
+  constructor({ name = 'default', loading_name, responseType = 'json', headers, dispatch, commit, router, successMsg, failMsg, successCallback, failCallback, customRequest }) {
     this.name = name
     // eslint-disable-next-line camelcase
     this.loading_name = loading_name
@@ -37,7 +37,7 @@ export class AxiosWrapper {
     })
   }
 
-  get (...args) {
+  get(...args) {
     this.setDefaultLoadingName(args)
 
     this.setLoadingValue(true)
@@ -58,7 +58,7 @@ export class AxiosWrapper {
     }).finally(() => this.setLoadingValue(false))
   }
 
-  post (...args) {
+  post(...args) {
     this.setDefaultLoadingName(args)
 
     this.setLoadingValue(true)
@@ -72,7 +72,7 @@ export class AxiosWrapper {
     }).finally(() => this.setLoadingValue(false))
   }
 
-  put (...args) {
+  put(...args) {
     this.setDefaultLoadingName(args)
 
     this.setLoadingValue(true)
@@ -94,7 +94,7 @@ export class AxiosWrapper {
     }).finally(() => this.setLoadingValue(false))
   }
 
-  delete (...args) {
+  delete(...args) {
     this.setDefaultLoadingName(args)
 
     this.setLoadingValue(true)
@@ -107,31 +107,31 @@ export class AxiosWrapper {
     }).finally(() => this.setLoadingValue(false))
   }
 
-  cancel (reason) {
+  cancel(reason) {
     this.source.cancel(reason)
   }
 
-  setLoadingValue (payload) {
+  setLoadingValue(payload) {
     // this.dispatch('loading/update', { type: this.loading_name, payload }, { root: true })
     this.commit('loading/update', { type: this.loading_name, payload }, { root: true })
   }
 
-  setDefaultLoadingName (...args) {
+  setDefaultLoadingName(...args) {
     if (!this.loading_name) {
       let url = args[0]
       if (url.indexOf('/') !== -1) {
-        let us = url.split('/')
+        const us = url.split('/')
         url = us[us.length - 1]
       }
       if (url.indexOf('?') !== -1) {
-        let us = url.split('?')
+        const us = url.split('?')
         url = us[0]
       }
       this.loading_name = `${url}_loading`
     }
   }
 
-  getCommonResponseHandler ({ failMsg } = {}) {
+  getCommonResponseHandler({ failMsg } = {}) {
     return (response) => {
       if (!response.data) {
         message.warn(this.failMsg || failMsg)

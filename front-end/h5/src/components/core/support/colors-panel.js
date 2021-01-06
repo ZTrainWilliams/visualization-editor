@@ -6,12 +6,12 @@ export default {
       default: () => []
     }
   },
-  render () {
+  render() {
     return <div>
       {
         this.value.map((colorString, index) => {
           return <el-color-picker
-            size="small"
+            size='small'
             value={colorString}
             onChange={newColorString => {
               const colors = this.value.slice(0)

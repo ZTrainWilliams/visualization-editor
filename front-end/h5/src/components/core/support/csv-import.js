@@ -4,16 +4,16 @@ const validFileMimeTypes = ['text/csv', 'text/x-csv', 'application/vnd.ms-excel'
 export default {
   name: 'lbs-csv-import',
   methods: {
-    checkMimeType (type) {
+    checkMimeType(type) {
       return validFileMimeTypes.indexOf(type) > -1
     },
-    validFileMimeType (e) {
+    validFileMimeType(e) {
       e.preventDefault()
-      let file = this.$refs.csv.files[0]
+      const file = this.$refs.csv.files[0]
       const isValidFileMimeType = this.checkMimeType(file.type)
       if (isValidFileMimeType) this.loadFile()
     },
-    loadFile () {
+    loadFile() {
       /**
        * output {String}
           "columnA,columnB,columnC
@@ -48,25 +48,25 @@ export default {
         this.$refs.input.value = ''
       })
     },
-    readFile (callback) {
-      let file = this.$refs.csv.files[0]
+    readFile(callback) {
+      const file = this.$refs.csv.files[0]
       if (file) {
-        let reader = new FileReader()
+        const reader = new FileReader()
         reader.readAsText(file, 'UTF-8')
-        reader.onload = function (evt) {
+        reader.onload = function(evt) {
           callback(evt.target.result)
         }
-        reader.onerror = function () {
+        reader.onerror = function() {
         }
       }
     }
   },
-  render () {
+  render() {
     const randomId = +new Date()
-    return <div style="height: 24px;">
-      <label for={randomId} class="ant-btn ant-btn-primary ant-btn-sm">选择导入 csv 文件</label>
+    return <div style='height: 24px;'>
+      <label for={randomId} class='ant-btn ant-btn-primary ant-btn-sm'>选择导入 csv 文件</label>
       {/* <input id={randomId} style="visibility:hidden;" type="file"></input> */}
-      <input ref="input" id={randomId} ref="csv" type="file" onChange={this.validFileMimeType} style="visibility:hidden;" name="csv">xxxx</input>
+      <input ref='input' id={randomId} ref='csv' type='file' onChange={this.validFileMimeType} style='visibility:hidden;' name='csv'>xxxx</input>
     </div>
   }
 }

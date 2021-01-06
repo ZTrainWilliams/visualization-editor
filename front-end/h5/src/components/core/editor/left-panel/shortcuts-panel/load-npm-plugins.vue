@@ -15,12 +15,12 @@
     <a-modal
       title="NPM 组件列表配置信息"
       :visible="visible"
+      :confirm-loading="confirmLoading"
       @ok="handleOk"
-      :confirmLoading="confirmLoading"
       @cancel="handleCancel"
     >
       <div>
-        <a-textarea v-model="text" placeholder="Basic usage"  :rows="20" />
+        <a-textarea v-model="text" placeholder="Basic usage" :rows="20" />
       </div>
     </a-modal>
   </div>
@@ -28,7 +28,7 @@
 <script>
 import Vue from 'vue'
 export default {
-  data () {
+  data() {
     return {
       visible: false,
       confirmLoading: false,
@@ -50,10 +50,10 @@ export default {
     }
   },
   methods: {
-    showModal () {
+    showModal() {
       this.visible = true
     },
-    handleOk (e) {
+    handleOk(e) {
       const createjs = window.createjs
 
       // eslint-disable-next-line no-new-func
@@ -70,19 +70,19 @@ export default {
       queue.on('complete', handleComplete, this)
 
       queue.loadManifest(npmPackages)
-      function handleComplete (e) {
+      function handleComplete(e) {
         // 可以直接使用 this 的原因： query。on 最后一个参数用来做做 bind this 操作
         this.visible = false
         this.confirmLoading = false
         this.$emit('loadComplete', npmPackages)
       }
 
-      function handleFileLoad (event) {
+      function handleFileLoad(event) {
         const { name } = event.item
         Vue.component(name, window[name])
       }
     },
-    handleCancel (e) {
+    handleCancel(e) {
       this.visible = false
     }
   }

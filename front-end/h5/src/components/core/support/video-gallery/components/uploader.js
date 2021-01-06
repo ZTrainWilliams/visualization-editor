@@ -23,10 +23,10 @@ export default {
     loading: false
   }),
   methods: {
-    handleBeforeUpload (file) {
+    handleBeforeUpload(file) {
       return this.beforeUpload(file)
     },
-    handleChange (info) {
+    handleChange(info) {
       this.loading = true
       const status = info.file.status
       if (status !== 'uploading') {
@@ -41,21 +41,21 @@ export default {
       }
     }
   },
-  render (h) {
+  render(h) {
     return (
       <a-upload
-        name="files"
-        action="/upload"
+        name='files'
+        action='/upload'
         beforeUpload={this.handleBeforeUpload}
         onChange={this.handleChange}>
         <slot>
           <a-button>
-            <a-icon type="upload" /> Click to Upload
+            <a-icon type='upload' /> Click to Upload
           </a-button>
         </slot>
       </a-upload>
     )
   },
-  mounted () {
+  mounted() {
   }
 }

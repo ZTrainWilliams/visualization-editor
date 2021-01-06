@@ -36,70 +36,70 @@ export default {
     ...mapActions('loading', {
       updateLoading: 'update'
     }),
-    handlePreview () {
+    handlePreview() {
       this.saveWork({ loadingName: 'previewWork_loading' }).then(() => {
         this.$emit('preview')
         // this.previewDialogVisible = true
       })
     },
-    handleSave () {
+    handleSave() {
       this.saveWork({ isSaveCover: true })
     },
-    handlePublish () {
+    handlePublish() {
       this.updateWork({ is_publish: true })
       this.saveWork({ successMsg: '发布成功' })
     },
-    handleSetAsTemplate () {
+    handleSetAsTemplate() {
       this.updateLoading({ type: 'setWorkAsTemplate_loading', value: true })
       this.saveWork().then(() => {
         this.setWorkAsTemplate()
       })
     },
-    handleSelectItem ({ key }) {
+    handleSelectItem({ key }) {
       switch (key) {
         case 'setAsTemplate':
           this.handleSetAsTemplate()
       }
     }
   },
-  render (h) {
+  render(h) {
     return (
       <a-menu
-        slot="action-menu"
-        theme="dark"
-        mode="horizontal"
+        slot='action-menu'
+        theme='dark'
+        mode='horizontal'
         defaultSelectedKeys={['2']}
         style={{ lineHeight: '64px', float: 'right', background: 'transparent' }}
       >
         {/* 保存、预览、发布、设置为模板 */}
-        <a-menu-item key="1" class="transparent-bg">
+        <a-menu-item key='1' class='transparent-bg'>
           <a-button
-            type="primary"
-            size="small"
+            type='primary'
+            size='small'
             onClick={this.handlePreview}
             loading={this.previewWork_loading}
           >{this.$t('editor.header.preview')}</a-button>
         </a-menu-item>
-        <a-menu-item key="2" class="transparent-bg">
+        <a-menu-item key='2' class='transparent-bg'>
           <a-button
-            size="small"
+            size='small'
             onClick={this.handleSave}
             loading={this.saveWork_loading || this.uploadWorkCover_loading}
           >{this.$t('editor.header.save')}</a-button>
         </a-menu-item>
         {/* <a-menu-item key="3" class="transparent-bg"><a-button size="small">发布</a-button></a-menu-item> */}
-        <a-menu-item key="3" class="transparent-bg">
+        <a-menu-item key='3' class='transparent-bg'>
           <a-dropdown-button
-            size="small"
+            size='small'
             onClick={this.handlePublish}
             loading={this.saveWork_loading || this.uploadWorkCover_loading}
           >
             {this.$t('editor.header.publish') /* 发布 */}
-            <a-menu slot="overlay" onClick={this.handleSelectItem}>
-              <a-menu-item key="setAsTemplate">
-                <a-spin spinning={this.setWorkAsTemplate_loading} size="small">
+            <a-menu slot='overlay' onClick={this.handleSelectItem}>
+              <a-menu-item key='setAsTemplate'>
+                <a-spin spinning={this.setWorkAsTemplate_loading} size='small'>
                   {/* 设置为模板 */}
-                  <a-icon type="cloud-upload" />{this.$t('editor.header.setAsTemplate')}
+                  <a-icon type='cloud-upload' />{this.$t('editor.header.setAsTemplate')}
                 </a-spin>
               </a-menu-item>
               {/* <a-menu-item key="2"><a-icon type="user" />2nd menu item</a-menu-item> */}

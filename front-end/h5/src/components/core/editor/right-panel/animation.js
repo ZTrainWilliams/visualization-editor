@@ -4,7 +4,7 @@ import { animationOptions, animationValue2Name, firstLevelAnimationOptions } fro
 export default {
   computed: {
     ...mapState('editor', ['editingElement']),
-    animationQueue () {
+    animationQueue() {
       return (this.editingElement && this.editingElement.animations) || []
     }
   },
@@ -15,7 +15,7 @@ export default {
     drawerVisible: false
   }),
   methods: {
-    addAnimation () {
+    addAnimation() {
       // TODO move this to vuex
       this.animationQueue.push({
         type: '',
@@ -26,24 +26,24 @@ export default {
       })
       this.activeCollapsePanel = this.animationQueue.length - 1
     },
-    deleteAnimate (index) {
+    deleteAnimate(index) {
       // TODO move this to vuex
       this.animationQueue.splice(index, 1)
     },
-    runAnimate () {
+    runAnimate() {
       // front-end/h5/src/components/core/editor/index.js created()
       window.EditorApp.$emit('RUN_ANIMATIONS')
     },
-    renderSecondAnimationTabs (animations) {
+    renderSecondAnimationTabs(animations) {
       return (
         <a-tabs
           defaultActiveKey={animations[0].value}
           onChange={tab => {}}
-          style="width:100%;"
+          style='width:100%;'
           tabBarStyle={{ marginLeft: '-16px' }}
-          size="small"
+          size='small'
           tabBarGutter={0}
-          tabPosition="left"
+          tabPosition='left'
         >
           {
             animations.map(group => (
@@ -82,15 +82,15 @@ export default {
         </a-tabs>
       )
     },
-    renderAvaiableAnimations () {
+    renderAvaiableAnimations() {
       return (
         <a-tabs
-          class="avaiable-animations-tabs"
+          class='avaiable-animations-tabs'
           defaultActiveKey={firstLevelAnimationOptions[0].label}
           onChange={tab => {}}
-          style="width:100%;"
+          style='width:100%;'
           // tabBarStyle={{}}
-          size="small"
+          size='small'
           tabBarGutter={0}
         >
           {
@@ -104,9 +104,9 @@ export default {
         </a-tabs>
       )
     },
-    renderAnimationOptions (animationOption) {
+    renderAnimationOptions(animationOption) {
       return (
-        <a-form layout="horizontal">
+        <a-form layout='horizontal'>
           <a-form-item label={this.$t('editor.editPanel.animation.type')} labelCol={{ span: 5 }} wrapperCol={{ span: 16, offset: 2 }}>
             {/* <a-popover placement="left" title="动画列表" trigger="click">
               <template slot="content">
@@ -115,9 +115,9 @@ export default {
               <a-button type="primary">动画列表</a-button>
             </a-popover> */}
             {/* 动画列表 */}
-            <a-button type="link" size="small" icon="ordered-list" onClick={() => { this.drawerVisible = true }}>{this.$t('editor.editPanel.animation.list')}</a-button>
+            <a-button type='link' size='small' icon='ordered-list' onClick={() => { this.drawerVisible = true }}>{this.$t('editor.editPanel.animation.list')}</a-button>
           </a-form-item>
-          <a-form-item label={this.$t('editor.editPanel.animation.duration')} labelCol={{ span: 5 }} wrapperCol={{ span: 16, offset: 2 }} style="margin-bottom:0;">
+          <a-form-item label={this.$t('editor.editPanel.animation.duration')} labelCol={{ span: 5 }} wrapperCol={{ span: 16, offset: 2 }} style='margin-bottom:0;'>
             <a-form-item style={{ display: 'inline-block', width: 'calc(50% - 12px)' }}>
               <a-slider
                 defaultValue={2}
@@ -133,7 +133,7 @@ export default {
               <a-input-number
                 min={0}
                 max={20}
-                size="small"
+                size='small'
                 formatter={value => `${value}秒(s)`}
                 value={animationOption.duration}
                 onChange={value => {
@@ -142,7 +142,7 @@ export default {
               />
             </a-form-item>
           </a-form-item>
-          <a-form-item label={this.$t('editor.editPanel.animation.delay')} labelCol={{ span: 5 }} wrapperCol={{ span: 16, offset: 2 }} style="margin-bottom:0;">
+          <a-form-item label={this.$t('editor.editPanel.animation.delay')} labelCol={{ span: 5 }} wrapperCol={{ span: 16, offset: 2 }} style='margin-bottom:0;'>
             <a-form-item style={{ display: 'inline-block', width: 'calc(50% - 12px)' }}>
               <a-slider
                 defaultValue={2}
@@ -158,7 +158,7 @@ export default {
               <a-input-number
                 min={0}
                 max={20}
-                size="small"
+                size='small'
                 formatter={value => `${value}秒(s)`}
                 value={animationOption.delay}
                 onChange={value => {
@@ -167,7 +167,7 @@ export default {
               />
             </a-form-item>
           </a-form-item>
-          <a-form-item label={this.$t('editor.editPanel.animation.iteration')} labelCol={{ span: 5 }} wrapperCol={{ span: 16, offset: 2 }} style="margin-bottom:0;">
+          <a-form-item label={this.$t('editor.editPanel.animation.iteration')} labelCol={{ span: 5 }} wrapperCol={{ span: 16, offset: 2 }} style='margin-bottom:0;'>
             <a-form-item style={{ display: 'inline-block', width: 'calc(50% - 12px)' }}>
               <a-slider
                 defaultValue={2}
@@ -183,7 +183,7 @@ export default {
               <a-input-number
                 min={0}
                 max={20}
-                size="small"
+                size='small'
                 formatter={value => `${value}次(times)`}
                 value={animationOption.interationCount}
                 onChange={value => {
@@ -192,7 +192,7 @@ export default {
               />
             </a-form-item>
           </a-form-item>
-          <a-form-item label={this.$t('editor.editPanel.animation.inifinite')} labelCol={{ span: 5 }} wrapperCol={{ span: 16, offset: 2 }} style="margin-bottom:0;">
+          <a-form-item label={this.$t('editor.editPanel.animation.inifinite')} labelCol={{ span: 5 }} wrapperCol={{ span: 16, offset: 2 }} style='margin-bottom:0;'>
             <a-switch
               value={animationOption.infinite}
               onChange={value => {
@@ -204,15 +204,15 @@ export default {
       )
     }
   },
-  render (h) {
+  render(h) {
     const ele = this.editingElement
     if (!ele) return (<span>{this.$t('editor.editPanel.common.empty')}</span>)
     return (
-      <div class="main-animate widget" id="animation-right-panel">
+      <div class='main-animate widget' id='animation-right-panel'>
         <a-button-group>
           {/* 添加动画、运行动画 */}
-          <a-button type="primary" onClick={this.addAnimation}><a-icon type="plus" />{this.$t('editor.editPanel.animation.add')}</a-button>
-          <a-button type="primary" onClick={this.runAnimate}>{this.$t('editor.editPanel.animation.run')}<a-icon type="right-circle" /></a-button>
+          <a-button type='primary' onClick={this.addAnimation}><a-icon type='plus' />{this.$t('editor.editPanel.animation.add')}</a-button>
+          <a-button type='primary' onClick={this.runAnimate}>{this.$t('editor.editPanel.animation.run')}<a-icon type='right-circle' /></a-button>
         </a-button-group>
         {
           // Q：这边为何这样写：this.animationQueue.length && ?
@@ -220,7 +220,7 @@ export default {
           !!this.animationQueue.length &&
           <a-collapse
             accordion
-            class="collapse-wrapper"
+            class='collapse-wrapper'
             activeKey={'' + this.activeCollapsePanel}
             onChange={(key) => {
               // 当全部收起来时候，key 为 undefined
@@ -230,12 +230,12 @@ export default {
             {
               this.animationQueue.map((addedAnimation, index) => (
                 <a-collapse-panel key={`${index}`}>
-                  <template slot="header">
+                  <template slot='header'>
                     {/* #!zh: 动画{index + 1} */}
                     {/* #!en: Animation{index + 1}</span> */}
                     <span>{this.$t('editor.editPanel.animation.title', { index: index + 1 })}</span>
-                    <a-tag color="orange">{animationValue2Name[addedAnimation.type] || addedAnimation.type }</a-tag>
-                    <a-icon type="delete" onClick={() => this.deleteAnimate(index)} title="删除动画"></a-icon>
+                    <a-tag color='orange'>{animationValue2Name[addedAnimation.type] || addedAnimation.type }</a-tag>
+                    <a-icon type='delete' onClick={() => this.deleteAnimate(index)} title='删除动画'></a-icon>
                   </template>
                   {this.renderAnimationOptions(addedAnimation)}
                 </a-collapse-panel>
@@ -245,15 +245,15 @@ export default {
         }
 
         <a-drawer
-          title="请选择动画"
-          placement="left"
+          title='请选择动画'
+          placement='left'
           closable={true}
           onClose={() => { this.drawerVisible = false }}
           visible={this.drawerVisible}
           width={400}
           wrapStyle={{ margin: '-16px' }}
         >
-          <div style="width: 100%;">
+          <div style='width: 100%;'>
             {this.renderAvaiableAnimations()}
           </div>
         </a-drawer>

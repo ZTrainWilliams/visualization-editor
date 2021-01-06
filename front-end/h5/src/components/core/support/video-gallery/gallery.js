@@ -29,25 +29,25 @@ export default {
   computed: {
   },
   watch: {
-    visible (value) {
+    visible(value) {
       this.innerVisible = value
     }
   },
   methods: {
-    showGallery () {
+    showGallery() {
       this.innerVisible = true
     },
-    handleClose () {
+    handleClose() {
       this.innerVisible = false
     },
-    changeTab ({ key }) {
+    changeTab({ key }) {
       this.activeTab = key
     },
-    handleSelectImage (item) {
+    handleSelectImage(item) {
       this.handleClose()
       this.$emit('change', item.url)
     },
-    renderContent () {
+    renderContent() {
       switch (this.activeTab) {
         case 'personal':
           return <PersonalTab onChangeItem={item => {
@@ -55,22 +55,22 @@ export default {
           }}/>
       }
     },
-    renderDefaultActivator () {
+    renderDefaultActivator() {
       const activatorWithoutImg = (
         <div
-          class="default-activator cursor-pointer empty-bg-activator"
+          class='default-activator cursor-pointer empty-bg-activator'
           onClick={this.showGallery}
         >
-          <a-icon type="plus" />
+          <a-icon type='plus' />
         </div>
       )
 
       const activatorWithImg = (
         <div onClick={this.showGallery}>
-          <div class="default-activator cursor-pointer "><video src={this.value} width="50%" style={{ margin: 'auto' }} /></div>
-          <div class="flex-space-between" style="margin-top: 8px;">
-            <a-button size="small">更换</a-button>
-            <a-button size="small" onClick={(e) => {
+          <div class='default-activator cursor-pointer '><video src={this.value} width='50%' style={{ margin: 'auto' }} /></div>
+          <div class='flex-space-between' style='margin-top: 8px;'>
+            <a-button size='small'>更换</a-button>
+            <a-button size='small' onClick={(e) => {
               e.stopPropagation()
               this.handleSelectImage({ url: '' })
             }}>移除</a-button>
@@ -80,26 +80,26 @@ export default {
       return (this.value ? activatorWithImg : activatorWithoutImg)
     }
   },
-  render (h) {
+  render(h) {
     return (
       <div>
         <slot>{this.renderDefaultActivator()}</slot>
         <a-modal
           closable
-          title="视频库"
-          width="65%"
+          title='视频库'
+          width='65%'
           visible={this.innerVisible}
           onOk={this.handleClose}
           onCancel={this.handleClose}
           bodyStyle={{ margin: 0, padding: 0 }}
         >
-          <a-layout style="height: 500px; position: relative;">
-            <a-layout-sider width="200px" style="background-color: white;">
-              <a-menu mode="inline" defaultSelectedKeys={['personal']} onClick={this.changeTab}>
+          <a-layout style='height: 500px; position: relative;'>
+            <a-layout-sider width='200px' style='background-color: white;'>
+              <a-menu mode='inline' defaultSelectedKeys={['personal']} onClick={this.changeTab}>
                 {
                   this.tabs.map((tab, index) => (
                     <a-menu-item key={tab.value} >
-                      <a-icon type="user" />
+                      <a-icon type='user' />
                       <span>{tab.label}</span>
                     </a-menu-item>
                   ))

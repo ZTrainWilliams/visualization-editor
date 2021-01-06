@@ -9,12 +9,12 @@ export default {
       default: 142
     }
   },
-  render (h) {
+  render(h) {
     if (this.item.loading) {
       return <a-spin>
         <a-card hoverable>
           <div
-            slot="cover"
+            slot='cover'
             style={{
               height: `${this.height}px`
             }}>
@@ -27,7 +27,7 @@ export default {
         hoverable
       >
         <div
-          slot="cover"
+          slot='cover'
           style={{
             backgroundImage: `url(${this.item.url})`,
             backgroundSize: 'cover',

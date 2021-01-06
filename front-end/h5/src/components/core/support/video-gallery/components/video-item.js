@@ -9,14 +9,14 @@ export default {
       default: 240
     }
   },
-  render (h) {
+  render(h) {
     return (
       <a-card
         hoverable
       >
         <video
           controls
-          slot="cover"
+          slot='cover'
           src={this.item.url || this.item.url}
           style={{
             height: `${this.height}px`

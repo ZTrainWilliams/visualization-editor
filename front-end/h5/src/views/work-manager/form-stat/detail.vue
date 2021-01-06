@@ -24,7 +24,7 @@ export default {
     /**
      * columns demo: [{"1565369322603":"abc"},{"1565595388440":"ddd"},{"1565595388440":"acd"},{"1565596393441":"b","1565596397671":"a"},{"1565596393441":"b","1565596397671":"a"}]
      */
-    columns () {
+    columns() {
       const { uuidMap2Name } = this.formDetailOfWork
       // the uuid for input plugin
       return Object.entries(uuidMap2Name).map(([uuid, inputName]) => ({
@@ -47,7 +47,7 @@ export default {
         "updated_at": "2019-08-11T07:36:54.526Z"
       }]>
     */
-    rows () {
+    rows() {
       const { formRecords, uuidMap2Name } = this.formDetailOfWork
       const rows = formRecords.map(({ form, id }) => {
         const row = {}
@@ -67,11 +67,11 @@ export default {
       'fetchFormsOfWork'
     ])
   },
-  render (h) {
+  render(h) {
     return (
-      <div class="works-wrapper">
-        <a-table columns={this.columns} dataSource={this.rows} row-key="id" scopedSlots={{
-          action: function (props) {
+      <div class='works-wrapper'>
+        <a-table columns={this.columns} dataSource={this.rows} row-key='id' scopedSlots={{
+          action: function(props) {
             // 查看数据
             return [<router-link to={{ name: 'stat-detail', params: { id: props.id } }} >{this.$t('basicData.viewData')}</router-link>]
           }
@@ -80,7 +80,7 @@ export default {
       </div>
     )
   },
-  created () {
+  created() {
     const workId = this.$route.params.id
     this.fetchFormsOfWork(workId)
   }

@@ -14,20 +14,20 @@ import Page from 'core/models/page'
 
 // actions
 export const actions = {
-  setEditingPage ({ commit }, pageIndex = 0) {
+  setEditingPage({ commit }, pageIndex = 0) {
     commit('setEditingPage', pageIndex)
   },
-  pageManager ({ commit }, payload) {
+  pageManager({ commit }, payload) {
     commit('pageManager', payload)
   }
 }
 
 // mutations
 export const mutations = {
-  setEditingPage (state, pageIndex = 0) {
+  setEditingPage(state, pageIndex = 0) {
     state.editingPage = state.work.pages[pageIndex]
   },
-  pageManager (state, { type, value }) {
+  pageManager(state, { type, value }) {
     switch (type) {
       case 'editTitle':
         const { pageIndex, newTitle } = value
@@ -49,9 +49,9 @@ export const mutations = {
         }
 
         const { work, editingPage } = state
-        let index = work.pages.findIndex(page => page.uuid === editingPage.uuid)
+        const index = work.pages.findIndex(page => page.uuid === editingPage.uuid)
         if (index !== -1) {
-          let newPages = work.pages.slice()
+          const newPages = work.pages.slice()
           newPages.splice(index, 1)
           state.work.pages = newPages
         }

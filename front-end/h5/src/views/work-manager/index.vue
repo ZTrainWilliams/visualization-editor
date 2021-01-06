@@ -68,12 +68,12 @@ export default {
     LangSelect
   },
   methods: {
-    renderSidebar (menus) {
+    renderSidebar(menus) {
       // const renderLabel = menu => menu.routerName ? <router-link class="default-router-link" to={{ name: menu.routerName }}>{menu.label}</router-link> : menu.label
       const renderLabel = menu =>
         menu.routerName ? (
           <router-link
-            class="default-router-link"
+            class='default-router-link'
             to={{ name: menu.routerName }}
           >
             {this.$t(menu.i18nLabel)}
@@ -86,7 +86,7 @@ export default {
         menu.children ? (
           <a-sub-menu key={menu.key}>
             {/** <span slot="title"><a-icon type={menu.antIcon} />{menu.label}</span> */}
-            <span slot="title">
+            <span slot='title'>
               <a-icon type={menu.antIcon} />
               {this.$t(menu.i18nLabel)}
             </span>
@@ -106,49 +106,49 @@ export default {
       )
     }
   },
-  render (h) {
+  render(h) {
     return (
       <a-layout style={{ height: '100vh' }}>
         <Header>
-          <a-dropdown slot="action-menu" style="margin-right: 12px;">
+          <a-dropdown slot='action-menu' style='margin-right: 12px;'>
             <a-menu
-              slot="overlay"
+              slot='overlay'
               onClick={e => {
                 if (!e.key === 3) {
                   this.$router.push(`/login`)
                 }
               }}
             >
-              <a-menu-item key="1">
+              <a-menu-item key='1'>
                 <span>someone@luban</span>
               </a-menu-item>
               <a-menu-divider />
-              <a-menu-item key="2">
-                <a-icon type="setting" />
+              <a-menu-item key='2'>
+                <a-icon type='setting' />
                 账号设置
               </a-menu-item>
-              <a-menu-item key="3">
-                <a-icon type="logout" />
+              <a-menu-item key='3'>
+                <a-icon type='logout' />
                 退出登录
               </a-menu-item>
             </a-menu>
-            <a class="user-avatar-activator" href="#">
-              <a-icon type="user" />
+            <a class='user-avatar-activator' href='#'>
+              <a-icon type='user' />
             </a>
           </a-dropdown>
         </Header>
         <a-layout>
-          <a-layout-sider width="160" style="background: #fff">
+          <a-layout-sider width='160' style='background: #fff'>
             <a-menu
-              mode="inline"
+              mode='inline'
               // defaultSelectedKeys={['1']}
               defaultOpenKeys={['1', '2', '3']}
-              style="height: 100%"
+              style='height: 100%'
             >
               {this.renderSidebar(sidebarMenus)}
             </a-menu>
           </a-layout-sider>
-          <a-layout style="padding: 0 0 24px">
+          <a-layout style='padding: 0 0 24px'>
             <a-layout-content style={{ padding: '24px', minHeight: '280px' }}>
               <router-view />
             </a-layout-content>

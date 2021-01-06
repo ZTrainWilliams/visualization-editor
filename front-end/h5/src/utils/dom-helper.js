@@ -1,4 +1,4 @@
-export function contains (root, n) {
+export function contains(root, n) {
   let node = n
   while (node) {
     if (node === root) {
@@ -14,7 +14,7 @@ export function contains (root, n) {
  *
  * @param {*} param0 canvas 实现 watermark
  */
-export function renderWaterMark ({
+export function renderWaterMark({
   // 使用 ES6 的函数默认值方式设置参数的默认取值
   // 具体参见 https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/Default_parameters
   container = document.body,

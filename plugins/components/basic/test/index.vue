@@ -18,7 +18,7 @@ export default {
     // elSwitch: Switch
   },
   props: {
-    text: PropTypes.string()
+    text: PropTypes.string(),
   },
   data() {
     return {

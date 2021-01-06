@@ -9,7 +9,7 @@ export default {
     NodeWrapper
   },
   methods: {
-    renderPreview (h, elements) {
+    renderPreview(h, elements) {
       const pageWrapperStyle = { height: this.height || '100%', position: 'relative' }
       return (
         <div style={pageWrapperStyle}>
@@ -24,7 +24,7 @@ export default {
       )
     }
   },
-  render (h) {
+  render(h) {
     return this.renderPreview(h, this.elements)
   }
 }

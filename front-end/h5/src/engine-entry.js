@@ -33,7 +33,6 @@ Vue.use(Antd)
 Vue.config.productionTip = true;
 Vue.prototype.$message = message;
 
-
 const Engine = {
   name: 'engine',
   components: {

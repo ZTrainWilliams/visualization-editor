@@ -19,29 +19,29 @@ export default {
     loading: false
   }),
   methods: {
-    uploadSuccess ({ file, fileList }) {
+    uploadSuccess({ file, fileList }) {
       const response = file.response.length && file.response[0]
       this.items = [{ name: response.name, url: response.url.replace('http://localhost:1337', '') }, ...this.cachedItems]
     },
-    beforeUpload (file) {
+    beforeUpload(file) {
       this.items.unshift({
         loading: true
       })
       return file
     }
   },
-  render (h) {
+  render(h) {
     return (
       <div>
-        <a-spin tip="Loading..." spinning={this.loading}>
+        <a-spin tip='Loading...' spinning={this.loading}>
           <a-card>
             <Uploader
-              slot="extra"
+              slot='extra'
               beforeUpload={file => this.beforeUpload(file)}
               uploadSuccess={info => this.uploadSuccess(info)}
             />
             <a-list
-              style="height: 400px; overflow: auto;"
+              style='height: 400px; overflow: auto;'
               grid={{ gutter: 12, column: 3 }}
               dataSource={this.items}
               renderItem={(item, index) => (
@@ -58,7 +58,7 @@ export default {
       </div>
     )
   },
-  mounted () {
+  mounted() {
     // demo code
     axios
       .get('/upload/files', {

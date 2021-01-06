@@ -23,13 +23,13 @@ export default {
       'setEditingElement'
     ])
   },
-  render () {
+  render() {
     const bgEle = this.editingPage.elements.find(e => e.name === 'lbp-background')
     return (
       <div>
         <RenderWorkMode />
         <PropsEditPanel
-          layout="vertical"
+          layout='vertical'
           realEditingElement={bgEle}
         />
       </div>

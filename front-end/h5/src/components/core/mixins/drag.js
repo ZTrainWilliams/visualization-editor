@@ -13,7 +13,7 @@
 
 let dragDom = null
 
-let dragConfig = {
+const dragConfig = {
   isPreDrag: false, // 准备拖拽
   isDrag: false, // 正式拖拽
   origin: {
@@ -25,7 +25,7 @@ let dragConfig = {
 }
 
 class Drag {
-  constructor (options) {
+  constructor(options) {
     this.mousedown = options.mousedown
     this.mousemove = options.mousemove
     this.mouseup = options.mouseup
@@ -35,33 +35,33 @@ class Drag {
     this._mouseup = this._mouseup.bind(this)
   }
 
-  start (e) {
+  start(e) {
     this._mousedown(e)
   }
 
-  _mousedown (e) {
+  _mousedown(e) {
     this.mousedown(e)
     this.toggleListener('add')
   }
 
-  _mousemove (e) {
+  _mousemove(e) {
     console.log('mousemove')
     this.mousemove(e)
   }
 
-  _mouseup (e) {
+  _mouseup(e) {
     this.mouseup(e)
     this.toggleListener('remove')
   }
 
-  toggleListener (action) {
+  toggleListener(action) {
     document[`${action}EventListener`]('mousemove', this._mousemove)
     document[`${action}EventListener`]('mouseup', this._mouseup)
   }
 }
 
 export default {
-  data () {
+  data() {
     return {
 
     }
@@ -72,7 +72,7 @@ export default {
      * @param {*} element shortcutItem
      * @param {*} e
      */
-    handleDragStartFromMixin (element, e) {
+    handleDragStartFromMixin(element, e) {
       // https://developer.mozilla.org/zh-CN/docs/Web/API/event.button
       // 0 为 左键点击.
       if (e.button !== 0) return
@@ -94,7 +94,7 @@ export default {
      *
      * @param {*} e
      */
-    mousedown (e) {
+    mousedown(e) {
       // 鼠标.x 相对于元素左上角 的偏移
       const { layerX, layerY } = e
       dragConfig.origin.layerX = layerX
@@ -110,13 +110,13 @@ export default {
       dragConfig.isPreDrag = true
     },
     /** 组件拖拽中 */
-    mousemove (e) {
+    mousemove(e) {
       dragDom.classList.remove('hidden')
       const { layerX, layerY } = dragConfig.origin
       dragDom.style.left = e.clientX - layerX + 'px'
       dragDom.style.top = e.clientY - layerY + 'px'
     },
-    mouseup (e) {
+    mouseup(e) {
       const { layerX, layerY } = dragConfig.origin
       document.body.removeChild(dragDom)
       dragDom = null
@@ -134,14 +134,14 @@ export default {
         }
       })
     },
-    checkCanMousedown (e, { minOffsetX, minOffsetY, minOffset }) {
+    checkCanMousedown(e, { minOffsetX, minOffsetY, minOffset }) {
       const offsetX = e.clientX - dragConfig.origin.clientX
       const offsetY = e.clientY - dragConfig.origin.clientY
 
       return offsetX >= (minOffsetX || minOffset) || offsetY >= (minOffsetY || minOffset)
     }
   },
-  updated () {
+  updated() {
     console.log('updated')
   }
 }

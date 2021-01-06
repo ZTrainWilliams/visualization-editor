@@ -15,17 +15,17 @@ export default {
     pageSize: 30
   }),
   methods: {
-    uploadSuccess ({ file, fileList }) {
+    uploadSuccess({ file, fileList }) {
       const response = file.response.length && file.response[0]
       this.items = [{ name: response.name, url: response.url.replace('http://localhost:1337', '') }, ...this.cachedItems]
     },
-    beforeUpload (file) {
+    beforeUpload(file) {
       this.items.unshift({
         loading: true
       })
       return file
     },
-    searchFiles () {
+    searchFiles() {
       axios
         .get('/upload/files', {
           params: {
@@ -40,13 +40,13 @@ export default {
         })
     }
   },
-  render (h) {
+  render(h) {
     return (
       <div>
-        <a-spin tip="Loading..." spinning={this.loading}>
+        <a-spin tip='Loading...' spinning={this.loading}>
           <a-card>
             <Uploader
-              slot="extra"
+              slot='extra'
               beforeUpload={file => this.beforeUpload(file)}
               uploadSuccess={info => this.uploadSuccess(info)}
             />
@@ -65,7 +65,7 @@ export default {
                   this.searchFiles()
                 }
               }}
-              style="height: 400px; overflow: auto;"
+              style='height: 400px; overflow: auto;'
               grid={{ gutter: 12, column: 3 }}
               dataSource={this.items}
               renderItem={(item, index) => (
@@ -82,7 +82,7 @@ export default {
       </div>
     )
   },
-  mounted () {
+  mounted() {
     axios.get('/upload/files/count').then(res => {
       this.total = res.data.count
     })

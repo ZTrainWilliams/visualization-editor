@@ -22,7 +22,7 @@ export default {
   }),
   computed: {
     ...mapState('editor', ['works']),
-    computedWorks () {
+    computedWorks() {
       return this.works.map(w => ({
         id: w.id,
         title: w.title,
@@ -37,16 +37,16 @@ export default {
       'fetchWorksWithForms'
     ])
   },
-  render (h) {
+  render(h) {
     const that = this
     return (
-      <div class="works-wrapper" style="background-color:white;padding: 12px;margin-top: 24px;">
-        <a-table size="middle" columns={columns} dataSource={this.computedWorks} row-key="id" scopedSlots={{
+      <div class='works-wrapper' style='background-color:white;padding: 12px;margin-top: 24px;'>
+        <a-table size='middle' columns={columns} dataSource={this.computedWorks} row-key='id' scopedSlots={{
           id: (props) => {
             return (
-              <router-link to={{ name: 'editor', params: { workId: props.id } }} target="_blank" title={this.$t('workCard.view')}>
+              <router-link to={{ name: 'editor', params: { workId: props.id } }} target='_blank' title={this.$t('workCard.view')}>
                 {props.id}
-                <a-icon type="link" title={this.$t('workCard.view')} class="ml-3" />
+                <a-icon type='link' title={this.$t('workCard.view')} class='ml-3' />
               </router-link>
             )
           },
@@ -59,7 +59,7 @@ export default {
       </div>
     )
   },
-  created () {
+  created() {
     this.fetchWorksWithForms()
   }
 }

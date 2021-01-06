@@ -17,7 +17,7 @@ const defaultStyle = {
 }
 
 class Element {
-  constructor (ele) {
+  constructor(ele) {
     this.name = ele.name
     this.uuid = ele.uuid || +new Date()
     /**
@@ -37,7 +37,7 @@ class Element {
     this.animations = ele.animations || []
   }
 
-  getCommonStyle (ele) {
+  getCommonStyle(ele) {
     if (typeof ele.commonStyle === 'object') {
       return cloneObj(ele.commonStyle)
     }
@@ -49,7 +49,7 @@ class Element {
     }
   }
 
-  getPluginProps (ele) {
+  getPluginProps(ele) {
     if (typeof ele.pluginProps === 'object') {
       return cloneObj({ ...ele.pluginProps, uuid: this.uuid })
     }
@@ -57,7 +57,7 @@ class Element {
   }
 
   // init prop of plugin
-  getDefaultPluginProps (ele) {
+  getDefaultPluginProps(ele) {
     const { props = {}, shortcutProps = {} } = ele
 
     let pluginProps = {
@@ -76,7 +76,7 @@ class Element {
     return pluginProps
   }
 
-  getStyle ({ position = 'static', isRem = false } = {}) {
+  getStyle({ position = 'static', isRem = false } = {}) {
     if (this.name === 'lbp-background') {
       return {
         width: '100%',
@@ -85,7 +85,7 @@ class Element {
     }
     const pluginProps = this.pluginProps
     const commonStyle = this.commonStyle
-    let style = {
+    const style = {
       top: parsePx(pluginProps.top || commonStyle.top, isRem),
       left: parsePx(pluginProps.left || commonStyle.left, isRem),
       width: parsePx(pluginProps.width || commonStyle.width, isRem),
@@ -100,22 +100,22 @@ class Element {
     return style
   }
 
-  getProps ({ mode = 'edit' } = {}) {
+  getProps({ mode = 'edit' } = {}) {
     return {
       ...this.pluginProps,
       disabled: disabledPluginsForEditMode.includes(this.name) && mode === 'edit'
     }
   }
 
-  getClass () {
+  getClass() {
 
   }
 
-  getData () {
+  getData() {
 
   }
 
-  getAttrs () {
+  getAttrs() {
     const attrs = {
       'data-uuid': this.uuid
     }
@@ -129,7 +129,7 @@ class Element {
     return attrs
   }
 
-  getPreviewData ({ position = 'static', isRem = false, mode = 'preview' } = {}) {
+  getPreviewData({ position = 'static', isRem = false, mode = 'preview' } = {}) {
     const style = this.getStyle({ position })
     const data = {
       style,
@@ -139,7 +139,7 @@ class Element {
     return data
   }
 
-  clone ({ zindex = this.commonStyle.zindex + 1 } = {}) {
+  clone({ zindex = this.commonStyle.zindex + 1 } = {}) {
     return new Element({
       zindex,
       name: this.name,

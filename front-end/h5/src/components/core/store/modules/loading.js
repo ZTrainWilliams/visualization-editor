@@ -26,14 +26,14 @@ const getters = {
 
 // actions
 const actions = {
-  update ({ commit }, payload) {
+  update({ commit }, payload) {
     commit('update', payload)
   }
 }
 
 // mutations
 const mutations = {
-  update (state, { type, payload }) {
+  update(state, { type, payload }) {
     state[type] = payload
   }
 }

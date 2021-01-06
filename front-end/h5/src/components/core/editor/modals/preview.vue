@@ -17,22 +17,22 @@ export default {
       default: () => {}
     }
   },
-  computed: {
-    // ...mapState('editor', {
-    //   work: state => state.work
-    // }),
-    releaseUrl () {
-      return `${window.location.origin}/works/preview/${this.work.id}?view_mode=preview`
-    }
-  },
-  data () {
+  data() {
     return {
       confirmLoading: false,
       qrcodeSize: 500
     }
   },
+  computed: {
+    // ...mapState('editor', {
+    //   work: state => state.work
+    // }),
+    releaseUrl() {
+      return `${window.location.origin}/works/preview/${this.work.id}?view_mode=preview`
+    }
+  },
   watch: {
-    visible (val) {
+    visible(val) {
       if (!val) return
       this.$nextTick(() => this.drawQRcode())
     }
@@ -42,7 +42,7 @@ export default {
       'saveWork',
       'updateWork'
     ]),
-    handleOk (e) {
+    handleOk(e) {
       this.confirmLoading = true
       this.saveWork().then(res => {
         this.handleClose()
@@ -51,21 +51,21 @@ export default {
       // setTimeout(() => {
       // }, 2000);
     },
-    handleCancel (e) {
+    handleCancel(e) {
       console.log('Clicked cancel button')
       this.handleClose()
     },
-    drawQRcode () {
+    drawQRcode() {
       var canvas = document.getElementById('qrcode-container')
       QRCode.toCanvas(canvas, this.releaseUrl, { scale: 4 }, err => {
         console.log(err)
       })
     },
-    postMessage2Iframe (message) {
-      let iframeWin = document.getElementById('iframe-for-preview').contentWindow
+    postMessage2Iframe(message) {
+      const iframeWin = document.getElementById('iframe-for-preview').contentWindow
       iframeWin.postMessage(message, window.location.origin)
     },
-    openNewTab (urlType) {
+    openNewTab(urlType) {
       switch (urlType) {
         case 'openPreviewPage':
           window.open(this.releaseUrl)
@@ -76,24 +76,24 @@ export default {
       }
     }
   },
-  render (h) {
+  render(h) {
     return (
       <a-modal
         visible={this.visible}
         confirmLoading={this.confirmLoading}
         onOk={this.handleOk}
         onCancel={this.handleCancel}
-        width="70%"
-        okText="保存"
+        width='70%'
+        okText='保存'
       >
-        <div class="preview-wrapper">
+        <div class='preview-wrapper'>
           <a-row gutter={20}>
             <a-col span={8}>
-              <div class="phone-wrapper" style={{ transform: 'scale(0.8)' }}>
-                <div class="phone">
-                  <div class="float-ctrl-panel">
-                    <a class="page-controller" onClick={(e) => { this.postMessage2Iframe('prev') }}>上一页</a>
-                    <a class="page-controller" onClick={(e) => { this.postMessage2Iframe('next') }}>下一页</a>
+              <div class='phone-wrapper' style={{ transform: 'scale(0.8)' }}>
+                <div class='phone'>
+                  <div class='float-ctrl-panel'>
+                    <a class='page-controller' onClick={(e) => { this.postMessage2Iframe('prev') }}>上一页</a>
+                    <a class='page-controller' onClick={(e) => { this.postMessage2Iframe('next') }}>下一页</a>
                     {/**
                     <a-button icon="up" shape="circle" onClick={() => { this.postMessage2Iframe('prev') }}></a-button>
                     <a-button icon="down" shape="circle" onClick={() => { this.postMessage2Iframe('next') }}></a-button>
@@ -105,10 +105,10 @@ export default {
                     // 类似 v-if="this.visible" 的目的：关闭预览弹框之后，销毁 iframe，避免继续播放音乐、视频
                     // similar with v-if="this.visible": destory the iframe after close the preview dialog to avoid playing the music and video
                     this.visible && <iframe
-                      id="iframe-for-preview"
+                      id='iframe-for-preview'
                       src={this.releaseUrl}
-                      frameborder="0"
-                      style="height: 100%;width: 100%;"
+                      frameborder='0'
+                      style='height: 100%;width: 100%;'
                     ></iframe>
                   }
                   {/** <engine :work="editingWork" :map-config="{}" /> */}
@@ -116,32 +116,32 @@ export default {
               </div>
             </a-col>
             <a-col span={12} offset={4}>
-              <div class="setting">
-                <div class="info">
-                  <h4 class="label">设置作品信息</h4>
+              <div class='setting'>
+                <div class='info'>
+                  <h4 class='label'>设置作品信息</h4>
                   <a-input
-                    class="input"
+                    class='input'
                     value={this.work.title}
                     onChange={e => this.updateWork({ title: e.target.value })}
                     // onBlur={this.saveTitle}
-                    placeholder="请输入标题"
+                    placeholder='请输入标题'
                   ></a-input>
                   <a-input
-                    class="input"
+                    class='input'
                     value={this.work.description}
                     onChange={e => this.updateWork({ description: e.target.value })}
                     // v-model="description"
                     // onBlur={this.saveDescription}
-                    placeholder="请输入描述"
-                    type="textarea"
+                    placeholder='请输入描述'
+                    type='textarea'
                   ></a-input>
                 </div>
-                <div class="qrcode my-4">
-                  <div class="label">
+                <div class='qrcode my-4'>
+                  <div class='label'>
                     <span>手机扫码分享给好友</span>
                   </div>
-                  <div class="code">
-                    <canvas style="float: left" id="qrcode-container"></canvas>
+                  <div class='code'>
+                    <canvas style='float: left' id='qrcode-container'></canvas>
                     {/**
                     <a-radio-group class="radios" value={this.qrcodeSize} onChange={e => { this.qrcodeSize = e.target.value }}>
                       <a-radio label={500} value={500}>500x500</a-radio>
@@ -151,9 +151,9 @@ export default {
                     */}
                   </div>
                 </div>
-                <div style="background: #fafafa;">
-                  <a-button type="link" icon="link" onClick={() => this.openNewTab('openPreviewPage')}>打开预览页面</a-button>
-                  <a-button type="link" icon="link" onClick={() => this.openNewTab('buildEngineDocs')}>如果本地预览显示空白，点此查看文档</a-button>
+                <div style='background: #fafafa;'>
+                  <a-button type='link' icon='link' onClick={() => this.openNewTab('openPreviewPage')}>打开预览页面</a-button>
+                  <a-button type='link' icon='link' onClick={() => this.openNewTab('buildEngineDocs')}>如果本地预览显示空白，点此查看文档</a-button>
                 </div>
               </div>
             </a-col>

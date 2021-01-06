@@ -22,7 +22,7 @@
 import { mapState } from 'vuex'
 import './contexmenu.scss'
 
-function isRegExp (value) {
+function isRegExp(value) {
   return value instanceof RegExp
 }
 
@@ -95,7 +95,7 @@ export default {
      * 做一下扩展，提供：黑白名单，来针对某些特定组件，展示特定右键菜单
      *
      */
-    filteredOptions () {
+    filteredOptions() {
       const elementName = this.editingElement.name
       const filteredOptions = contextmenuOptions.filter(option => {
         const wl = option.elementWhiteList
@@ -120,42 +120,42 @@ export default {
     }
   },
   methods: {
-    handleSelectMenu ({ item, key, selectedKeys }) {
+    handleSelectMenu({ item, key, selectedKeys }) {
       this.$emit('select', { item, key, selectedKeys }) // elementManager({ type: key })
     }
   },
-  render (h) {
+  render(h) {
     return (
       <a-card
         bodyStyle={{ padding: '4px' }}
-        class="contextmenu"
+        class='contextmenu'
       >
         <a-menu
           inlineIndent={4}
-          mode="inline"
+          mode='inline'
           onSelect={this.handleSelectMenu}
-          class="contextmenu__vertical-menus"
+          class='contextmenu__vertical-menus'
         >
           {
             this.filteredOptions.map(option => (
               <a-menu-item
                 key={option.value}
                 data-command={option.value}
-                class="contextmenu__vertical-menus__item"
+                class='contextmenu__vertical-menus__item'
               >{this.$t(option.i18nLabel)}</a-menu-item>
             ))
           }
         </a-menu>
         <a-menu
-          mode="horizontal"
+          mode='horizontal'
           onSelect={this.handleSelectMenu}
-          class="contextmenu__horizontal-menus"
+          class='contextmenu__horizontal-menus'
         >
           { zindexContextMenu.map(option => (
             <a-menu-item
               key={option.value}
               data-command={option.value}
-              class="contextmenu__horizontal-menus__item"
+              class='contextmenu__horizontal-menus__item'
             >{this.$t(option.i18nLabel)}</a-menu-item>
           ))
           }

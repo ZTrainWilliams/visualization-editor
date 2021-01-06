@@ -18,7 +18,7 @@ export default {
   mixins: [animationMixin],
   props: ['defaultPosition', 'active', 'handleMousedownProp', 'handleElementMoveProp', 'handlePointMoveProp', 'handleElementMouseUpProp', 'handlePointMouseUpProp', 'element'],
   computed: {
-    position () {
+    position() {
       return { ...this.defaultPosition }
     }
   },
@@ -26,16 +26,16 @@ export default {
     /**
      * 通过方位计算样式，主要是 top、left、鼠标样式
      */
-    getPointStyle (point, isWrapElement = true) {
+    getPointStyle(point, isWrapElement = true) {
       const pos = this.position
       const top = pos.top // !#zh 减4是为了让元素能够处于 border 的中间
       const left = pos.left
       const height = pos.height
       const width = pos.width
-      let hasT = /t/.test(point)
-      let hasB = /b/.test(point)
-      let hasL = /l/.test(point)
-      let hasR = /r/.test(point)
+      const hasT = /t/.test(point)
+      const hasB = /b/.test(point)
+      const hasL = /l/.test(point)
+      const hasR = /r/.test(point)
       let newLeft = 0
       let newTop = 0
       if (point.length === 2) {
@@ -65,38 +65,38 @@ export default {
     /**
      * !#zh 主要目的是：阻止冒泡
      */
-    handleWrapperClick (e) {
+    handleWrapperClick(e) {
       e.stopPropagation()
       e.preventDefault()
     },
-    mousedownForMark (point, downEvent) {
+    mousedownForMark(point, downEvent) {
       downEvent.stopPropagation()
       downEvent.preventDefault() // Let's stop this event.
       const pos = { ...this.position }
-      let height = pos.height
-      let width = pos.width
-      let top = pos.top
-      let left = pos.left
-      let startX = downEvent.clientX
-      let startY = downEvent.clientY
-      let move = moveEvent => {
-        let currX = moveEvent.clientX
-        let currY = moveEvent.clientY
-        let disY = currY - startY
-        let disX = currX - startX
-        let hasT = /t/.test(point)
-        let hasB = /b/.test(point)
-        let hasL = /l/.test(point)
-        let hasR = /r/.test(point)
-        let newHeight = +height + (hasT ? -disY : hasB ? disY : 0)
-        let newWidth = +width + (hasL ? -disX : hasR ? disX : 0)
+      const height = pos.height
+      const width = pos.width
+      const top = pos.top
+      const left = pos.left
+      const startX = downEvent.clientX
+      const startY = downEvent.clientY
+      const move = moveEvent => {
+        const currX = moveEvent.clientX
+        const currY = moveEvent.clientY
+        const disY = currY - startY
+        const disX = currX - startX
+        const hasT = /t/.test(point)
+        const hasB = /b/.test(point)
+        const hasL = /l/.test(point)
+        const hasR = /r/.test(point)
+        const newHeight = +height + (hasT ? -disY : hasB ? disY : 0)
+        const newWidth = +width + (hasL ? -disX : hasR ? disX : 0)
         pos.height = newHeight > 0 ? newHeight : 0
         pos.width = newWidth > 0 ? newWidth : 0
         pos.left = +left + (hasL ? disX : 0)
         pos.top = +top + (hasT ? disY : 0)
         this.handlePointMoveProp(pos)
       }
-      let up = () => {
+      const up = () => {
         this.handlePointMouseUpProp()
         document.removeEventListener('mousemove', move)
         document.removeEventListener('mouseup', up)
@@ -109,26 +109,26 @@ export default {
      *
      * @param {mouseEvent} e
      */
-    mousedownForElement (e) {
+    mousedownForElement(e) {
       const pos = { ...this.position }
-      let startY = e.clientY
-      let startX = e.clientX
-      let startTop = pos.top
-      let startLeft = pos.left
+      const startY = e.clientY
+      const startX = e.clientX
+      const startTop = pos.top
+      const startLeft = pos.left
 
-      let move = moveEvent => {
+      const move = moveEvent => {
         // !#zh 移动的时候，不需要向后代元素传递事件，只需要单纯的移动就OK
         moveEvent.stopPropagation()
         moveEvent.preventDefault()
 
-        let currX = moveEvent.clientX
-        let currY = moveEvent.clientY
+        const currX = moveEvent.clientX
+        const currY = moveEvent.clientY
         pos.top = currY - startY + startTop
         pos.left = currX - startX + startLeft
         this.handleElementMoveProp(pos)
       }
 
-      let up = moveEvent => {
+      const up = moveEvent => {
         this.handleElementMouseUpProp()
         document.removeEventListener('mousemove', move, true)
         document.removeEventListener('mouseup', up, true)
@@ -136,7 +136,7 @@ export default {
       document.addEventListener('mousemove', move, true)
       document.addEventListener('mouseup', up, true)
     },
-    handleMousedown (e) {
+    handleMousedown(e) {
       if (this.handleMousedownProp) {
         this.handleMousedownProp()
         this.mousedownForElement(e, this.element)
@@ -148,7 +148,7 @@ export default {
      *
      * TODO: 增加 确认删除 拦截操作
      */
-    handleDeleteByKeyboard (event) {
+    handleDeleteByKeyboard(event) {
       const key = event.keyCode || event.charCode
       if (key === 8 || key === 46) {
         this.$emit('delete')
@@ -161,14 +161,14 @@ export default {
      * 支持如下行为：
      * - Backspace/Delete 快速删除元素
      */
-    handleKeyPressed (e) {
+    handleKeyPressed(e) {
       this.handleDeleteByKeyboard(e)
     }
   },
-  render (h) {
+  render(h) {
     return (
       <div
-        tabIndex="0"
+        tabIndex='0'
         onKeydown={this.handleKeyPressed}
         onClick={this.handleWrapperClick}
         onMousedown={this.handleMousedown}
@@ -183,7 +183,7 @@ export default {
                 key={point}
                 data-point={point}
                 style={pointStyle}
-                class="shape__scale-point"
+                class='shape__scale-point'
                 onMousedown={this.mousedownForMark.bind(this, point)}
               ></div>
             )

@@ -2,7 +2,7 @@
   <a-dropdown>
     <span class="action lang-select-activator">
       <!-- <a-icon type="global" style="font-size: 16px"/> -->
-      {{langFlag}}
+      {{ langFlag }}
     </span>
     <a-menu slot="overlay" style="width: 150px;" @click="SwitchLang">
       <a-menu-item key="zh-CN">
@@ -26,7 +26,7 @@ export default {
   name: 'LangSelect',
   mixins: [langMixin],
   computed: {
-    langFlag () {
+    langFlag() {
       switch (this.currentLang) {
         case 'zh-CN':
           return '🇨🇳'
@@ -38,7 +38,7 @@ export default {
     }
   },
   methods: {
-    SwitchLang (row) {
+    SwitchLang(row) {
       this.setLang(row.key)
     }
   }

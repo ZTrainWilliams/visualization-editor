@@ -13,8 +13,8 @@ export default {
       'setEditingElement'
     ])
   },
-  created () {},
-  render (h) {
+  created() {},
+  render(h) {
     const ele = this.editingElement
     if (!ele) return (<span>{this.$t('editor.editPanel.common.empty')}</span>)
     return (<div>

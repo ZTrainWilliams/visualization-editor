@@ -11,10 +11,10 @@ export default {
   methods: {
     ...mapActions('editor', ['pageManager', 'elementManager', 'updateScaleRate'])
   },
-  render () {
+  render() {
     return (
       <a-layout-sider
-        width="40"
+        width='40'
         theme='light'
         style={{ background: '#fff', border: '1px solid #eee' }}
       >
@@ -22,14 +22,14 @@ export default {
           {
             fixedTools.map(tool => (
               <a-tooltip
-                effect="dark"
-                placement="left"
+                effect='dark'
+                placement='left'
                 title={this.$t(tool.i18nTooltip, { hotkey: tool.hotkeyTooltip })}>
                 <a-button
                   block
-                  class="transparent-bg"
-                  type="link"
-                  size="small"
+                  class='transparent-bg'
+                  type='link'
+                  size='small'
                   style={{ height: '40px', color: '#000' }}
                   disabled={!!tool.disabled}
                   onClick={() => tool.action && tool.action.call(this)}
@@ -48,7 +48,7 @@ export default {
       </a-layout-sider>
     )
   },
-  mounted () {
+  mounted() {
     fixedTools.map(tool => {
       tool.hotkey && hotkeys(tool.hotkey, { splitKey: '&' }, (event, handler) => {
         event.preventDefault()

@@ -18,18 +18,18 @@ const fixedTools = [
   {
     i18nTooltip: 'editor.fixedTool.preview',
     icon: 'eye',
-    action: function () { this.previewDialogVisible = true }
+    action: function() { this.previewDialogVisible = true }
   },
   {
     i18nTooltip: 'editor.fixedTool.copyCurrentPage',
     icon: 'copy',
-    action: function () { this.pageManager({ type: 'copy' }) },
+    action: function() { this.pageManager({ type: 'copy' }) },
     hotkey: 'ctrl&c,⌘&c'
   },
   {
     i18nTooltip: 'editor.fixedTool.copyCurrentElement',
     icon: 'copy',
-    action: function () { this.elementManager({ type: 'copy' }) }
+    action: function() { this.elementManager({ type: 'copy' }) }
   },
   {
     i18nTooltip: 'editor.fixedTool.importPSD',
@@ -41,21 +41,21 @@ const fixedTools = [
   {
     i18nTooltip: 'editor.fixedTool.zoomOut',
     icon: 'plus',
-    action: function () { this.updateScaleRate(0.25) },
+    action: function() { this.updateScaleRate(0.25) },
     hotkey: 'ctrl&=,⌘&=',
     hotkeyTooltip: '(ctrl +)'
   },
   {
     i18nTooltip: 'editor.fixedTool.zoomIn',
     icon: 'minus',
-    action: function () { this.updateScaleRate(-0.25) },
+    action: function() { this.updateScaleRate(-0.25) },
     hotkey: 'ctrl&-,⌘&-',
     hotkeyTooltip: '(ctrl -)'
   },
   {
     i18nTooltip: 'editor.fixedTool.issues',
     icon: 'question',
-    action: function () { window.open('https://github.com/ly525/luban-h5/issues/110') }
+    action: function() { window.open('https://github.com/ly525/luban-h5/issues/110') }
   }
 ]
 

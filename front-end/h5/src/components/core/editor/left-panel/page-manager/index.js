@@ -23,22 +23,22 @@ export default {
       'saveWork',
       'setEditingPage'
     ]),
-    onSelectMenuItem (menuKey) {
+    onSelectMenuItem(menuKey) {
       this.pageManager({ type: menuKey })
     },
-    onEditTitle ({ pageIndex, newTitle }) {
+    onEditTitle({ pageIndex, newTitle }) {
       this.pageManager({ type: 'editTitle', value: { pageIndex, newTitle } })
       this.saveWork({ isSaveCover: false })
     },
-    onSelectPage (pageIndex) { this.setEditingPage(pageIndex) },
-    onLeave () {
+    onSelectPage(pageIndex) { this.setEditingPage(pageIndex) },
+    onLeave() {
       this.hoverIndex = -1
     }
   },
-  render (h) {
+  render(h) {
     const addPageText = this.$t('editor.pageManager.action.add')
     return (
-      <div class="page-manager-panel">
+      <div class='page-manager-panel'>
         {
           this.pages.map((page, index) => (
             <span
@@ -67,9 +67,9 @@ export default {
           ))
         }
         <a-button
-          icon="plus"
-          type="dashed"
-          class="footer-actions"
+          icon='plus'
+          type='dashed'
+          class='footer-actions'
           onClick={() => this.onSelectMenuItem('add') }
         >{addPageText}</a-button>
       </div>

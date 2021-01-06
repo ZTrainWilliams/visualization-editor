@@ -8,7 +8,7 @@ export default {
   },
   methods: {
     ...mapActions('i18n', ['SetLang']),
-    setLang (lang) {
+    setLang(lang) {
       this.SetLang(lang)
     }
   }

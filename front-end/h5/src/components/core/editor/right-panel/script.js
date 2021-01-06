@@ -40,11 +40,11 @@ export default {
     ...mapActions('editor', [
       'setEditingElement'
     ]),
-    mixinScript () {
+    mixinScript() {
       // mixin script
     }
   },
-  render (h) {
+  render(h) {
     const ele = this.editingElement
     if (!ele) return (<span>{this.$t('editor.editPanel.common.empty')}</span>)
     return <div>
@@ -52,7 +52,7 @@ export default {
       <div style={{ margin: '20px' }}></div>
       <a-textarea
         rows={12}
-        placeholder="Basic usage"
+        placeholder='Basic usage'
         value={this.editorContent}
         onChange={(e) => {
           this.editorContent = e.target.value

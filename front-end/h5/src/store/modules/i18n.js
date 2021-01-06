@@ -12,7 +12,7 @@ const i18n = {
   },
   actions: {
     // 设置界面语言
-    SetLang ({ commit }, lang) {
+    SetLang({ commit }, lang) {
       return new Promise(resolve => {
         commit('SET_LANG', lang)
         loadLanguageAsync(lang)

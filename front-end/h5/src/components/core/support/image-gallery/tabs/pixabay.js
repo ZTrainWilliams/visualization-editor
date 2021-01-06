@@ -24,12 +24,12 @@ export default {
     }
   }),
   computed: {
-    isVertial () {
+    isVertial() {
       return this.options.orientation === 'vertical'
     }
   },
   methods: {
-    queryAPI () {
+    queryAPI() {
       axios
         .get('https://pixabay.com/api/', { params: this.options })
         .then(res => {
@@ -37,27 +37,27 @@ export default {
         })
     }
   },
-  render (h) {
+  render(h) {
     return (
       <div>
-        <a-spin tip="Loading..." spinning={this.loading}>
+        <a-spin tip='Loading...' spinning={this.loading}>
           <a-card >
-            <div slot="extra" style={{ display: 'flex' }}>
+            <div slot='extra' style={{ display: 'flex' }}>
               <a-dropdown>
-                <a-menu slot="overlay" onClick={({ key }) => {
+                <a-menu slot='overlay' onClick={({ key }) => {
                   this.options.orientation = key
                   this.queryAPI()
                 }}>
-                  <a-menu-item key="all"><a-icon type="user" />任意方位</a-menu-item>
-                  <a-menu-item key="horizontal"><a-icon type="user" />水平</a-menu-item>
-                  <a-menu-item key="vertical"><a-icon type="user" />竖直</a-menu-item>
+                  <a-menu-item key='all'><a-icon type='user' />任意方位</a-menu-item>
+                  <a-menu-item key='horizontal'><a-icon type='user' />水平</a-menu-item>
+                  <a-menu-item key='vertical'><a-icon type='user' />竖直</a-menu-item>
                 </a-menu>
-                <a-button style="margin-left: 8px" type="link">
-                  图片方向 <a-icon type="down" />
+                <a-button style='margin-left: 8px' type='link'>
+                  图片方向 <a-icon type='down' />
                 </a-button>
               </a-dropdown>
               <a-input-search
-                placeholder="input search text"
+                placeholder='input search text'
                 onSearch={value => {
                   this.options.q = value
                   this.queryAPI()
@@ -81,7 +81,7 @@ export default {
       </div>
     )
   },
-  mounted () {
+  mounted() {
     this.queryAPI()
   }
 }

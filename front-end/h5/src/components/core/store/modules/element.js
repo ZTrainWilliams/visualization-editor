@@ -3,36 +3,36 @@ import { swapZindex, getVM } from '@/utils/element'
 
 // actions
 export const actions = {
-  setEditingElement ({ commit }, payload) {
+  setEditingElement({ commit }, payload) {
     commit('setEditingElement', payload)
     payload && window.EditorApp.$emit('setEditingElement', payload)
   },
-  setElementPosition ({ commit }, payload) {
+  setElementPosition({ commit }, payload) {
     commit('setElementCommonStyle', payload)
   },
-  setElementShape ({ commit }, payload) {
+  setElementShape({ commit }, payload) {
     commit('setElementCommonStyle', payload)
   },
-  recordElementRect ({ commit }, payload = {}) {
+  recordElementRect({ commit }, payload = {}) {
     commit('recordRect', payload)
   },
-  elementManager ({ commit }, payload) {
+  elementManager({ commit }, payload) {
     commit('elementManager', payload)
   }
 }
 
 // mutations
 export const mutations = {
-  setEditingElement (state, payload) {
+  setEditingElement(state, payload) {
     state.editingElement = payload
   },
-  setElementCommonStyle (state, payload) {
+  setElementCommonStyle(state, payload) {
     state.editingElement.commonStyle = {
       ...state.editingElement.commonStyle,
       ...payload
     }
   },
-  elementManager (state, { type, value }) {
+  elementManager(state, { type, value }) {
     const { editingPage, editingElement } = state
     const elements = editingPage.elements
     const len = elements.length
@@ -86,7 +86,7 @@ export const mutations = {
       default:
     }
   },
-  recordRect (state, { type, value }) {
+  recordRect(state, { type, value }) {
 
   }
 }

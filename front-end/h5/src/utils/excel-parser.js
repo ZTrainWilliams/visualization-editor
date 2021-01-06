@@ -46,7 +46,7 @@ export default class Parser {
    *
    * @param {*} dataset ExcelDataType
    */
-  static dataset2excel (dataset) {
+  static dataset2excel(dataset) {
     return dataset.map(item => ({
       cells: {
         0: { text: item.x },
@@ -66,7 +66,7 @@ export default class Parser {
    * @param {Object} BinaryMatrix
    * @returns {Object} ExcelDataType
    */
-  static binaryMatrix2excel (binaryMatrix) {
+  static binaryMatrix2excel(binaryMatrix) {
     const excelData = binaryMatrix.map((row, rowIndex) => {
       // cells: {
       //   0: { text: item.x },
@@ -82,7 +82,7 @@ export default class Parser {
     return excelData
   }
 
-  static excel2chartDataSet (excelData) {
+  static excel2chartDataSet(excelData) {
     const rowsArray = Object.values(excelData.rows).filter(item => typeof item === 'object')
     const dataset = rowsArray.map(row => {
       const [x, y, s] = Object.values(row.cells).map(item => item.text)
@@ -95,7 +95,7 @@ export default class Parser {
     return dataset
   }
 
-  static excel2BinaryMatrix (excelData) {
+  static excel2BinaryMatrix(excelData) {
     const rowsArray = Object.values(excelData.rows).filter(item => typeof item === 'object')
     const dataset = rowsArray.map(row => {
       // [1,2,3,4]
@@ -131,7 +131,7 @@ export default class Parser {
        ]
      }
   */
-  static csv2VChartJson (csvArray) {
+  static csv2VChartJson(csvArray) {
     const columns = csvArray[0]
     const rows = csvArray.slice(1)
     const json = {

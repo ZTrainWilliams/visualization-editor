@@ -28,13 +28,13 @@ const ListItemCard = {
     qrcodeUrl: ''
   }),
   methods: {
-    timeFmt (date) {
+    timeFmt(date) {
       const dateTime = new Date(date)
       const displayTime = `${dateTime.getFullYear()}-${dateTime.getMonth() +
         1}-${dateTime.getDate()}`
       return displayTime
     },
-    genQRCodeUrl (work) {
+    genQRCodeUrl(work) {
       const url = `${window.location.origin}/works/preview/${work.id}`
       QRCode.toDataURL(url, (err, url) => {
         if (err) console.log(err)
@@ -42,24 +42,24 @@ const ListItemCard = {
       })
     }
   },
-  render (h) {
+  render(h) {
     return (
       <a-card hoverable >
-        <CardCover slot="cover" qrcodeUrl={this.qrcodeUrl} coverImageUrl={this.work.cover_image_url} />
-        <template class="ant-card-actions" slot="actions">
-          <a-tooltip effect="dark" placement="bottom" title={this.$t('workCard.useNow')}>
-            <a-icon type="plus-square" title={this.$t('workCard.useNow')} onClick={() => {
+        <CardCover slot='cover' qrcodeUrl={this.qrcodeUrl} coverImageUrl={this.work.cover_image_url} />
+        <template class='ant-card-actions' slot='actions'>
+          <a-tooltip effect='dark' placement='bottom' title={this.$t('workCard.useNow')}>
+            <a-icon type='plus-square' title={this.$t('workCard.useNow')} onClick={() => {
               this.handleUseTemplate(this.work)
             }} />
           </a-tooltip>
           {/** 预览 */}
-          <a-tooltip effect="dark" placement="bottom" title={this.$t('workCard.preview')}>
-            <a-icon type="eye" title={this.$t('workCard.preview')} onClick={this.handleClickPreview} />
+          <a-tooltip effect='dark' placement='bottom' title={this.$t('workCard.preview')}>
+            <a-icon type='eye' title={this.$t('workCard.preview')} onClick={this.handleClickPreview} />
           </a-tooltip>
           {
             this.qrcodeUrl
-              ? <a-icon type="close-circle" onClick={() => { this.qrcodeUrl = '' }} />
-              : <a-icon type="qrcode" onClick={() => this.genQRCodeUrl(this.work)} />
+              ? <a-icon type='close-circle' onClick={() => { this.qrcodeUrl = '' }} />
+              : <a-icon type='qrcode' onClick={() => this.genQRCodeUrl(this.work)} />
           }
           {/**
           <a-icon type="setting" />
@@ -68,10 +68,10 @@ const ListItemCard = {
         </template>
         <a-card-meta
         >
-          <div slot="title" class="ant-card-meta-title" style="font-size: 14px;">
+          <div slot='title' class='ant-card-meta-title' style='font-size: 14px;'>
             {this.work.title}({this.work.id})
           </div>
-          <div slot="description" style="font-size: 12px;">
+          <div slot='description' style='font-size: 12px;'>
             {/** 描述 时间 */}
             <div>{this.$t('workCard.description')}: {this.work.description}</div>
             <div>{this.$t('workCard.createTime')}: {this.timeFmt(this.work.created_at)}</div>
@@ -102,21 +102,21 @@ export default {
       'fetchWorkTemplates',
       'useTemplate'
     ]),
-    deleteWork (item) {
+    deleteWork(item) {
       // TODO delete work from work list
     }
   },
-  render (h) {
+  render(h) {
     return (
-      <div class="works-wrapper">
+      <div class='works-wrapper'>
         <a-row gutter={12}>
           {
             this.fetchWorkTemplates_loading
-              ? <a-col span={24} style="margin-bottom: 10px;text-align: center;height: 355px;line-height: 355px;border-bottom: 1px solid #ebedf0;background: rgba(255, 255, 255, 0.5);">
-                <a-spin tip="作品列表获取中..."/>
+              ? <a-col span={24} style='margin-bottom: 10px;text-align: center;height: 355px;line-height: 355px;border-bottom: 1px solid #ebedf0;background: rgba(255, 255, 255, 0.5);'>
+                <a-spin tip='作品列表获取中...'/>
               </a-col>
               : this.workTemplates.map(work => (
-                <a-col span={6} key={work.id} style="margin-bottom: 20px;">
+                <a-col span={6} key={work.id} style='margin-bottom: 20px;'>
                   <ListItemCard work={work}
                     handleClickPreview={e => {
                       this.previewVisible = true
@@ -146,22 +146,22 @@ export default {
             visible={true}
             // onOk={() => { this.useTemplateDialogVisible = true }}
             // onCancel={() => { this.useTemplateDialogVisible = false }}
-            width="240px"
-            okText="保存"
+            width='240px'
+            okText='保存'
             footer={null}
             closable={false}
             centered
           >
-            <div style="text-align: center;">
+            <div style='text-align: center;'>
               {
                 this.clonedWorkFromTemplate
                   ? <div>
-                    <div style={{ margin: '12px' }}><a-icon type="check-circle" theme="twoTone" twoToneColor="#52c41a" /> 模板已保存至"我的作品"中</div>
+                    <div style={{ margin: '12px' }}><a-icon type='check-circle' theme='twoTone' twoToneColor='#52c41a' /> 模板已保存至"我的作品"中</div>
                     <a-button onClick={() => {
                       this.useTemplateDialogVisible = false
                       this.clonedWorkFromTemplate = null
                     }}>我再逛逛</a-button>
-                    <a-button type="primary"
+                    <a-button type='primary'
                       onClick={() => {
                         const routeData = this.$router.resolve({ name: 'editor', params: { workId: this.clonedWorkFromTemplate.id } })
                         window.open(routeData.href, '_blank')
@@ -169,7 +169,7 @@ export default {
                       style={{ marginLeft: '12px' }}
                     >立即查看</a-button>
                   </div>
-                  : <a-spin tip="复制中" />
+                  : <a-spin tip='复制中' />
               }
             </div>
           </a-modal>
@@ -177,7 +177,7 @@ export default {
       </div>
     )
   },
-  created () {
+  created() {
     this.fetchWorkTemplates()
   }
 }

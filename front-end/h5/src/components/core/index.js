@@ -18,7 +18,6 @@ import AdjustLineV from 'core/support/adjust-line/vertical'
 import store from 'core/store/index'
 import router from 'core/router/index'
 import i18n from '@/locales'
-import '@/plugins/index'
 
 window.EditorApp = new Vue() // event bus
 const CoreEditor = {
@@ -42,13 +41,13 @@ const CoreEditor = {
   },
   methods: {
     ...mapActions('editor', ['fetchWork']),
-    handlePreview () { this.previewDialogVisible = true }
+    handlePreview() { this.previewDialogVisible = true }
   },
-  render (h) {
+  render(h) {
     return (
       <a-layout>
         <Header>
-          <EditorActionMenu slot="action-menu" onPreview={this.handlePreview} />
+          <EditorActionMenu slot='action-menu' onPreview={this.handlePreview} />
         </Header>
         <a-layout>
           <EditorLeftPanel />
@@ -68,7 +67,7 @@ const CoreEditor = {
       </a-layout>
     )
   },
-  created () {
+  created() {
     if (this.workId) {
       this.fetchWork(this.workId)
     } else {

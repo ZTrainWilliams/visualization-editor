@@ -71,7 +71,7 @@ export default {
       let hasHLine = false;
       exCoords.forEach(eX => {
         referElementsXCoords.forEach(referX => {
-          let offset = referX - eX;
+          const offset = referX - eX;
           if (Math.abs(offset) <= 5) {
             if (isPointMove) {
               this.setElementPosition({ width: ewidth + offset });
@@ -85,7 +85,7 @@ export default {
       });
       eyCoords.forEach(eY => {
         referElementsYCoords.forEach(referY => {
-          let offset = referY - eY;
+          const offset = referY - eY;
           if (Math.abs(offset) <= 5) {
             if (isPointMove) {
               this.setElementPosition({ height: eheight + offset });
@@ -141,27 +141,27 @@ export default {
      * @param {MouseEvent} e
      */
     mousedownForAdjustLine(e) {
-      let startY = e.clientY;
-      let startHeight = this.work.height;
+      const startY = e.clientY;
+      const startHeight = this.work.height;
 
       const canvasOuterWrapper = document.querySelector(
         '#canvas-outer-wrapper',
       );
 
-      let move = moveEvent => {
+      const move = moveEvent => {
         // !#zh 移动的时候，不需要向后代元素传递事件，只需要单纯的移动就OK
         moveEvent.stopPropagation();
         moveEvent.preventDefault();
 
-        let currY = moveEvent.clientY;
-        let currentHeight = currY - startY + startHeight;
+        const currY = moveEvent.clientY;
+        const currentHeight = currY - startY + startHeight;
         this.updateWorkHeight(currentHeight);
         // 交互效果：滚动条同步滚动至底部
         canvasOuterWrapper &&
           (canvasOuterWrapper.scrollTop = canvasOuterWrapper.scrollHeight);
       };
 
-      let up = moveEvent => {
+      const up = moveEvent => {
         document.removeEventListener('mousemove', move, true);
         document.removeEventListener('mouseup', up, true);
       };

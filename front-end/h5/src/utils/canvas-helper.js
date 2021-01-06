@@ -1,7 +1,7 @@
 import html2canvas from 'html2canvas'
 
 // https://stackoverflow.com/questions/12168909/blob-from-dataurl
-function dataURItoBlob (dataURI) {
+function dataURItoBlob(dataURI) {
   // convert base64 to raw binary data held in a string
   // doesn't handle URLEncoded DataURIs - see SO answer #6850276 for code that does this
   var byteString = atob(dataURI.split(',')[1])
@@ -30,7 +30,7 @@ function dataURItoBlob (dataURI) {
  * @param {String} selector
  * @param {文件名} fileName
  */
-export function takeScreenshot (selector = '.canvas-wrapper', fileName = `${+new Date()}`) {
+export function takeScreenshot(selector = '.canvas-wrapper', fileName = `${+new Date()}`) {
   const el = document.querySelector(selector)
   return new Promise((resolve, reject) => {
     // html2canvas document: https://html2canvas.hertzen.com/configuration

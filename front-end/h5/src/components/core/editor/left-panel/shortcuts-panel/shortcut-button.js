@@ -27,7 +27,7 @@ export default {
   render: (h, { props, listeners, slots }) => {
     return (
       <button
-        class="shortcut-button"
+        class='shortcut-button'
         onClick={props.clickFn}
         onMousedown={props.mousedownFn}
         disabled={props.disabled}

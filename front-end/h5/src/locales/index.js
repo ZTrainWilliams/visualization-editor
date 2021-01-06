@@ -26,13 +26,13 @@ export default i18n
 
 const loadedLanguages = [defaultLang]
 
-function setI18nLanguage (lang) {
+function setI18nLanguage(lang) {
   i18n.locale = lang
   document.querySelector('html').setAttribute('lang', lang)
   return lang
 }
 
-export function loadLanguageAsync (lang = defaultLang) {
+export function loadLanguageAsync(lang = defaultLang) {
   return new Promise(resolve => {
     if (i18n.locale !== lang) {
       if (!loadedLanguages.includes(lang)) {

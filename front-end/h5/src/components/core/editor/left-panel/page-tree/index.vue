@@ -11,7 +11,7 @@
 
 <script>
 import { mapState } from 'vuex'
-function getTreeNode (ele) {
+function getTreeNode(ele) {
   return {
     title: ele.name,
     key: ele.uuid,
@@ -24,20 +24,20 @@ export default {
     ...mapState('editor', {
       elements: state => state.editingPage.elements
     }),
-    treeData () {
+    treeData() {
       return this.elements.map(getTreeNode)
     }
   },
-  data () {
+  data() {
     return {
       gData: [],
       expandedKeys: []
     }
   },
   methods: {
-    onDragEnter (info) {
+    onDragEnter(info) {
     },
-    onDrop (info) {
+    onDrop(info) {
     }
   }
 }
