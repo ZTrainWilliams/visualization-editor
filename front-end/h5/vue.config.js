@@ -8,28 +8,37 @@
  * @Description: Do not edit
  * @Copyright 2018 - 2020 luban-h5. All Rights Reserved
  */
-const path = require('path')
-const webpack = require('webpack')
+const path = require('path');
+const webpack = require('webpack');
 // const isProd = process.env.NODE_ENV === 'production'
-const target = 'http://localhost:1337'
-const engineOutputDir = path.join(__dirname, '../../back-end/h5-api/public/engine-assets')
-const mainAppOutputDir = path.join(__dirname, '../../back-end/h5-api/build-editor')
-const coreEditorOutputDir = path.join(__dirname, '../../front-end/h5/src/components/core/dist')
+const target = 'http://localhost:1337';
+const engineOutputDir = path.join(
+  __dirname,
+  '../../back-end/h5-api/public/engine-assets',
+);
+const mainAppOutputDir = path.join(
+  __dirname,
+  '../../back-end/h5-api/build-editor',
+);
+const coreEditorOutputDir = path.join(
+  __dirname,
+  '../../front-end/h5/src/components/core/dist',
+);
 
-let page
+let page;
 switch (process.env.PAGE) {
   case 'ENGINE':
     page = {
       entry: 'src/engine-entry.js',
-      outputDir: engineOutputDir
-    }
-    break
+      outputDir: engineOutputDir,
+    };
+    break;
   case 'CORE_EDITOR':
     page = {
       entry: 'src/components/core/index.js',
-      outputDir: coreEditorOutputDir
-    }
-    break
+      outputDir: coreEditorOutputDir,
+    };
+    break;
   case 'EDITOR':
   default:
     page = {
@@ -38,25 +47,26 @@ switch (process.env.PAGE) {
       filename: 'index.html',
       title: 'Index Page',
       // outputDir: 'dist',
-      outputDir: mainAppOutputDir
+      outputDir: mainAppOutputDir,
       // publicPath: isProd ? '/main/' : '/'
-    }
+    };
 }
 
 const configureWebpack = {
   resolve: {
     alias: {
       '@': path.join(__dirname, 'src'),
-      'core': path.join(__dirname, 'src/components/core')
-    }
+      core: path.join(__dirname, 'src/components/core'),
+      h5PluginComp: path.join(__dirname, '../../plugins/components/h5'),
+      webPluginComp: path.join(__dirname, '../../plugins/components/basic'),
+    },
   },
   plugins: [
     // https://github.com/moment/moment/issues/2416
-    new webpack.ContextReplacementPlugin(/moment\/locale$/, /(zh-cn)$/)
+    new webpack.ContextReplacementPlugin(/moment\/locale$/, /(zh-cn)$/),
   ],
-  externals: {
-  }
-}
+  externals: {},
+};
 
 module.exports = {
   outputDir: page.outputDir,
@@ -69,21 +79,24 @@ module.exports = {
       '^/auth|upload|content-manager|users-permissions|works|admin|psd-files|workforms|third-libs|engine-assets/': {
         target,
         changeOrigin: true,
-        ws: false
-      }
-    }
+        ws: false,
+      },
+    },
   },
   configureWebpack,
   css: {
     loaderOptions: {
       stylus: {
         'resolve url': true,
-        'import': [
+        import: [
           // './src/theme'
-        ]
+        ],
+      },
+      postcss: {
+        'postcss-scss': {}
       }
     },
-    extract: false
+    extract: false,
   },
   pwa: {
     iconPaths: {
@@ -91,7 +104,7 @@ module.exports = {
       favicon16: 'img/icons/favicon.ico',
       appleTouchIcon: 'img/icons/favicon.ico',
       maskIcon: 'img/icons/favicon.ico',
-      msTileImage: 'img/icons/favicon.ico'
-    }
-  }
-}
+      msTileImage: 'img/icons/favicon.ico',
+    },
+  },
+};

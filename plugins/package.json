@@ -1,0 +1,21 @@
+{
+  "name": "rc-plugin",
+  "version": "0.0.1",
+  "description": "",
+  "dependencies": {
+    "postcss-scss": "^2.1.1"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.0.1",
+    "eslint": "^5.16.0"
+  },
+  "scripts": {
+    "test": ""
+  },
+  "repository": {
+    "type": "git"
+  },
+  "author": "ly525",
+  "license": "ISC",
+  "bugs": {}
+}

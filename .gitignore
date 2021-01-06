@@ -99,6 +99,8 @@ node_modules
 .node_history
 package-lock.json
 **/package-lock.json
+yarn.lock
+**/yarn.lock
 !docs/package-lock.json
 
 

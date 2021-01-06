@@ -1,0 +1,27 @@
+{
+  "name": "rc-plugin-h5",
+  "version": "0.0.1",
+  "description": "",
+  "dependencies": {
+    "vue": "^2.6.11",
+    "echarts": "^4.8.0",
+    "@luban-h5/lbc-button": "^0.0.3",
+    "@luban-h5/lbp-slide": "^0.0.7",
+    "@luban-h5/lbs-text-align": "^0.0.5",
+    "@luban-h5/plugin-common-props": "0.2.7",
+    "vant": "^2.2.12",
+    "resize-detector": "^0.2.2",
+    "lodash": "^4.17.19",
+    "v-charts": "^1.19.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": ""
+  },
+  "repository": {
+    "type": "git"
+  },
+  "author": "ly525",
+  "license": "ISC",
+  "bugs": {}
+}

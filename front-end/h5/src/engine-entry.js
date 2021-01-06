@@ -13,105 +13,117 @@
  * @Copyright 2018 - 2020 luban-h5. All Rights Reserved
  */
 
-import Vue from 'vue'
+import Vue from 'vue';
 // import 'font-awesome/css/font-awesome.min.css'
-import message from 'ant-design-vue/lib/message' // 加载 JS
-import 'ant-design-vue/lib/message/style/css' // 加载 CSS
+import message from 'ant-design-vue/lib/message'; // 加载 JS
+import 'ant-design-vue/lib/message/style/css'; // 加载 CSS
 
-import { pluginsList } from 'core/plugins/index.js'
-import { PAGE_MODE } from 'core/constants/work.js'
-import Element from 'core/models/element'
-import RenderPreview from 'core/editor/canvas/preview'
-import NodeWrapper from 'core/preview/node-wrapper.js'
+import { h5PluginList } from '@/plugins/h5.js';
+import { webPluginList } from '@/plugins/web.js';
+import { PAGE_MODE } from 'core/constants/work.js';
+import Element from 'core/models/element';
+import RenderPreview from 'core/editor/canvas/preview';
+import NodeWrapper from 'core/preview/node-wrapper.js';
 
-Vue.config.productionTip = true
-Vue.prototype.$message = message
+// 全量引入antd，方便调试，后续需要组件包单独打包，不再在此处导入
+import Antd from 'ant-design-vue';
+import 'ant-design-vue/dist/antd.css';
+Vue.use(Antd)
+
+Vue.config.productionTip = true;
+Vue.prototype.$message = message;
+
 
 const Engine = {
   name: 'engine',
   components: {
-    NodeWrapper
+    NodeWrapper,
   },
-  data () {
+  data() {
     return {
-      isLongPage: window.__work.page_mode === PAGE_MODE.LONG_PAGE
-    }
+      isLongPage: window.__work.page_mode === PAGE_MODE.LONG_PAGE,
+    };
   },
   methods: {
-    renderLongPage () {
-      if (!window.__work.pages.length) return
-      const work = window.__work
-      return this.renderPreview(work.pages[0].elements)
+    renderLongPage() {
+      if (!window.__work.pages.length) return;
+      const work = window.__work;
+      return this.renderPreview(work.pages[0].elements);
     },
-    renderSwiperPage () {
-      const work = window.__work
+    renderSwiperPage() {
+      const work = window.__work;
       return (
-        <div class="swiper-container">
-          <div class="swiper-wrapper">{
-            work.pages.map(page => {
+        <div class='swiper-container'>
+          <div class='swiper-wrapper'>
+            {work.pages.map(page => {
               return (
-                <section class="swiper-slide flat">
+                <section class='swiper-slide flat'>
                   {/* this.walk(h, page.elements) */}
-                  { this.renderPreview(page.elements) }
+                  {this.renderPreview(page.elements)}
                 </section>
-              )
-            })
-          }</div>
-          <div class="swiper-pagination"></div>
+              );
+            })}
+          </div>
+          <div class='swiper-pagination'></div>
         </div>
-      )
+      );
     },
-    renderPreview (pageElements = []) {
-      const height = this.isLongPage ? window.__work.height + 'px' : '100%'
-      const elements = pageElements.map(element => new Element(element))
+    renderPreview(pageElements = []) {
+      const height = this.isLongPage ? window.__work.height + 'px' : '100%';
+      const elements = pageElements.map(element => new Element(element));
       // src//core/editor/canvas/preview
-      return <RenderPreview elements={elements} height={height} />
+      return <RenderPreview elements={elements} height={height} />;
     },
-    getContainerStyle (work) {
+    getContainerStyle(work) {
       const containerStyle = {
         position: 'relative',
-        height: '100%'
-      }
+        height: '100%',
+      };
 
       if (this.isLongPage) {
-        containerStyle['overflow-y'] = 'scroll'
+        containerStyle['overflow-y'] = 'scroll';
       }
-      return containerStyle
+      return containerStyle;
     },
-    renderUnPublishTip () {
-      return <div style="box-sizing: border-box;min-height: 568px;line-height: 568px;text-align: center;">页面可能暂未发布</div>
-    }
+    renderUnPublishTip() {
+      return (
+        <div style='box-sizing: border-box;min-height: 568px;line-height: 568px;text-align: center;'>
+          页面可能暂未发布
+        </div>
+      );
+    },
   },
-  render (h) {
-    const work = window.__work
+  render(h) {
+    const work = window.__work;
 
     // 预览模式 或者 已经发布 的页面可以正常渲染，否则提示用户暂未发布
-    const query = new URLSearchParams(window.location.search)
-    const canRender = query.get('view_mode') === 'preview' || work.is_publish
-    if (!canRender) return this.renderUnPublishTip()
+    const query = new URLSearchParams(window.location.search);
+    const canRender = query.get('view_mode') === 'preview' || work.is_publish;
+    if (!canRender) return this.renderUnPublishTip();
 
-    const containerStyle = this.getContainerStyle(work)
-    return <div id="work-container" data-work-id={work.id} style={containerStyle}>
-      {
-        this.isLongPage ? this.renderLongPage() : this.renderSwiperPage()
-      }
-    </div>
-  }
-}
+    const containerStyle = this.getContainerStyle(work);
+    return (
+      <div id='work-container' data-work-id={work.id} style={containerStyle}>
+        {this.isLongPage ? this.renderLongPage() : this.renderSwiperPage()}
+      </div>
+    );
+  },
+};
 
-const install = function (Vue) {
-  Vue.component(Engine.name, Engine)
-  pluginsList.forEach(plugin => {
-    Vue.component(plugin.name, plugin.component)
-  })
-}
+const install = function(Vue) {
+  Vue.component(Engine.name, Engine);
+  const components = [...h5PluginList, ...webPluginList];
+  components.forEach(plugin => {
+    Vue.component(plugin.name, plugin.component);
+  });
+};
 
 // auto install
 if (typeof window !== 'undefined' && window.Vue) {
-  install(window.Vue)
+  install(window.Vue);
 }
 
 export default {
   install,
-  Engine
-}
+  Engine,
+};

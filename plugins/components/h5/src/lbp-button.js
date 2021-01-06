@@ -31,7 +31,7 @@ export default {
         style={style}
       >{text}</button>)
   },
-  name: 'lbp-button',
+  name: 'lbutton',
   props: {
     text: PropTypes.string(),
     vertical: PropTypes.boolean(),

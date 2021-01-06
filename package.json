@@ -6,13 +6,17 @@
     "flightplan": "^0.6.20",
     "standard-version": "^8.0.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "babel-eslint": "^8.0.1",
+    "eslint": "^5.16.0"
+  },
   "scripts": {
     "release-f": "standard-version -f",
     "release-major": "standard-version -r major",
     "release-minor": "standard-version -r minor",
     "release-patch": "standard-version -r patch",
-    "deploy:ecs": "fly production"
+    "deploy:ecs": "fly production",
+    "start": "cd front-end/h5 && yarn build:engine && yarn dev"
   },
   "repository": {
     "type": "git",

@@ -40,7 +40,7 @@ export default {
       if (Vue.component(this.customEditorName)) {
         this.loadCustomEditorFlag = true
       } else {
-        import(`core/plugins/${this.editingElement.name}__editor`).then(component => {
+        import(`h5PluginComp/src/${this.editingElement.name}__editor`).then(component => {
           this.loadCustomEditorFlag = true
           Vue.component(this.customEditorName, component.default)
         }).catch(_err => {

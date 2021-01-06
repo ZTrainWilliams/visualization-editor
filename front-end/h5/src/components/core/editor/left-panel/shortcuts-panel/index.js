@@ -1,25 +1,27 @@
-import ShortcutButton from './shortcut-button'
-import UsageTip from './usage-tip'
-import LoadNpmPlugins from './load-npm-plugins.vue'
-import langMixin from 'core/mixins/i18n'
-import dragMixin from 'core/mixins/drag'
-import loadPluginsMixin from 'core/plugins/index'
-import { mapActions } from 'vuex'
+import ShortcutButton from './shortcut-button';
+import UsageTip from './usage-tip';
+import LoadNpmPlugins from './load-npm-plugins.vue';
+import langMixin from 'core/mixins/i18n';
+import dragMixin from 'core/mixins/drag';
+import { mapActions } from 'vuex';
+import { h5PluginList } from '@/plugins/h5';
+import { webPluginList } from '@/plugins/web';
 
 export default {
-  mixins: [langMixin, dragMixin, loadPluginsMixin],
+  mixins: [langMixin, dragMixin],
   data: () => ({
-    npmPackages: []
+    npmPackages: [],
+    usablePlugin: ['h5', 'web'],
   }),
   methods: {
     ...mapActions('editor', [
       'elementManager',
       'pageManager',
       'saveWork',
-      'setEditingPage'
+      'setEditingPage',
     ]),
     ...mapActions('loading', {
-      updateLoading: 'update'
+      updateLoading: 'update',
     }),
     /**
      * !#zh 点击插件，copy 其基础数据到组件树（中间画布）
@@ -31,12 +33,12 @@ export default {
       shortcutProps: {}
      }
      */
-    clone (shortcutItem) {
+    clone(shortcutItem) {
       this.elementManager({
         type: 'add',
-        value: shortcutItem
-      })
-    }
+        value: shortcutItem,
+      });
+    },
     /**
      * #!zh 渲染多个插件的快捷方式
      * #!en render shortcuts for multi plugins
@@ -108,31 +110,68 @@ export default {
    * #!en: render shortcust at the sidebar or the header.
    * if user click/drag the shortcut, the related plugin will be added to the canvas
    */
-  render (h) {
+  render(h) {
+    console.log(this.usablePlugin, 999);
     // return this.renderShortCutsPanel(this.groups)
     return (
-      <a-row gutter={20} style="max-height: calc(100vh - 140px);overflow: scroll;">
-        <UsageTip />
-        {
-          [].concat(this.pluginsList, this.npmPackages)
-            .filter(plugin => plugin.visible)
-            .map(plugin => (
-              <a-col span={12} style={{ marginTop: '10px' }}>
-                <ShortcutButton
-                  clickFn={this.clone.bind(this, plugin)}
-                  mousedownFn={this.handleDragStartFromMixin.bind(this, plugin)}
-                  // title={plugin.title}
-                  title={plugin.i18nTitle[this.currentLang] || plugin.title}
-                  faIcon={plugin.icon}
-                  disabled={plugin.disabled}
-                />
-              </a-col>
-            ))
-        }
-        <LoadNpmPlugins onLoadComplete={npmPackages => {
-          this.npmPackages = npmPackages
-        }} />
-      </a-row>
-    )
-  }
-}
+      <div style='max-height: calc(100vh - 140px);overflow: scroll;'>
+        <a-row gutter={20}>
+          <UsageTip />
+          <p style='text-align: center; background: lightblue; margin-bottom: 5px;'>
+            H5组件
+          </p>
+          {this.usablePlugin.includes('h5') &&
+            []
+              .concat(h5PluginList)
+              .filter(plugin => plugin.visible)
+              .map(plugin => (
+                <a-col span={12} style={{ marginTop: '10px' }}>
+                  <ShortcutButton
+                    clickFn={this.clone.bind(this, plugin)}
+                    mousedownFn={this.handleDragStartFromMixin.bind(
+                      this,
+                      plugin,
+                    )}
+                    // title={plugin.title}
+                    title={plugin.i18nTitle[this.currentLang] || plugin.title}
+                    faIcon={plugin.icon}
+                    disabled={plugin.disabled}
+                  />
+                </a-col>
+              ))}
+          <LoadNpmPlugins
+            onLoadComplete={npmPackages => {
+              this.npmPackages = npmPackages;
+            }}
+          />
+        </a-row>
+        <a-row>
+          {this.usablePlugin.includes('web') && (
+            <p style='text-align: center; background: lightblue; margin-top: 20px;'>
+              WEB组件
+            </p>
+          )}
+          {this.usablePlugin.includes('web') &&
+            []
+              .concat(webPluginList, this.npmPackages)
+              .filter(plugin => plugin.visible)
+              .map(plugin => (
+                <a-col span={12} style={{ marginTop: '10px' }}>
+                  <ShortcutButton
+                    clickFn={this.clone.bind(this, plugin)}
+                    mousedownFn={this.handleDragStartFromMixin.bind(
+                      this,
+                      plugin,
+                    )}
+                    // title={plugin.title}
+                    title={plugin.i18nTitle[this.currentLang] || plugin.title}
+                    faIcon={plugin.icon}
+                    disabled={plugin.disabled}
+                  />
+                </a-col>
+              ))}
+        </a-row>
+      </div>
+    );
+  },
+};
