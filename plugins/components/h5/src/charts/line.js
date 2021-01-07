@@ -3,6 +3,7 @@ import VeRadar from 'v-charts/lib/radar.common'
 import VePie from 'v-charts/lib/pie.common'
 import VeHistogram from 'v-charts/lib/histogram.common'
 import VeFunnel from 'v-charts/lib/funnel.common'
+import VeRing from 'v-charts/lib/ring.common'
 import PropTypes from '@luban-h5/plugin-common-props'
 import 'echarts/lib/component/legend'
 import 'echarts/lib/component/markLine'
@@ -68,6 +69,8 @@ export default {
         return <VeFunnel data={chartData} colors={this.colors} />
       case 'radar':
         return <VeRadar data={chartData} colors={this.colors} />
+      case 'ring':
+        return <VeRing data={chartData} colors={this.colors} />
       default:
         return null
     }

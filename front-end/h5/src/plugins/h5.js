@@ -92,6 +92,20 @@ const h5PluginList = [
     },
   },
   {
+    i18nTitle: {
+      'en-US': 'LineChart',
+      'zh-CN': '环图',
+    },
+    title: '环图',
+    icon: 'circle-o-notch',
+    component: LbpLineChart,
+    visible: true,
+    name: LbpLineChart.name,
+    shortcutProps: {
+      type: 'ring',
+    },
+  },
+  {
     title: '公告',
     i18nTitle: {
       'en-US': 'Notice-Bar',
