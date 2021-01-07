@@ -91,11 +91,6 @@ module.exports = {
         import: [
           // './src/theme'
         ],
-      },
-      postcss: {
-        'postcss-scss': {
-
-        }
       }
     },
     extract: false,
